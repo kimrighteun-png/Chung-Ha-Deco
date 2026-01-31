@@ -1,0 +1,160 @@
+/* 1. КОРЕШОК (на полке) */
+#binder-spine {
+    position: absolute;
+    bottom: 140px;
+    right: 40px;
+    width: 180px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 10;
+}
+
+#binder-spine:hover { transform: scale(1.05); }
+
+#binder-spine img { width: 100%; height: auto; }
+
+/* 2. ОВЕРЛЕЙ */
+#binder-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+/* 3. КОНТЕЙНЕР КНИГИ (Твои 900x650) */
+.binder-container, .binder-wrap {
+    position: relative;
+    width: 900px;
+    height: 650px;
+}
+
+#binder-book {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 4. РАЗВОРОТ И СЛОИ (Твои координаты) */
+#binder-content {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+.page-spread {
+    position: relative;
+    width: 100%; height: 100%;
+}
+
+.layer-bottom {
+    position: absolute;
+    top:2055px; /* Твой отступ */
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.cd-disk {
+    position: absolute;
+    width: 230px; /* Твой размер */
+    height: 230px;
+    top: 235px;   /* Твой отступ */
+    left: 40px;
+    z-index: 50;
+    cursor: pointer;
+    user-select: none;
+}
+
+.layer-top {
+    position: absolute;
+    top: 205px; /* Твой отступ */
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    opacity: 0.5;
+    pointer-events: none; /* Чтобы клик шел сквозь слой */
+}
+
+/* 5. КНОПКА "ИСПОЛЬЗОВАТЬ" (Добавил под книгу) */
+.binder-controls {
+    position: absolute;
+    bottom: -60px; /* Вынес под книгу */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.use-btn {
+    padding: 10px 25px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* 6. НАВИГАЦИЯ */
+.page-nav {
+    position: absolute;
+    top: 0; width: 100px; height: 100%;
+    cursor: pointer;
+    z-index: 200;
+}
+.page-nav.prev { left: 0; }
+.page-nav.next { right: 0; }
+
+.hidden { display: none !important; }
+
+
+
+.binder-controls {
+    position: absolute;
+    bottom: 100px; /* Прижимаем к нижнему краю оверлея */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001; /* Выше всех слоев биндера */
+    pointer-events: auto; /* Чтобы кнопка точно нажималась */
+}
+
+.use-btn {
+    padding: 5px 8px;
+    background: #fff;
+    color: #000;
+    border: 3px solid #000;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+#player-disk-visual {
+    position: absolute;
+    /* Центрируем диск внутри плеера */
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100px; /* Размер диска в плеере */
+    z-index: 2;   /* Должен быть выше корпуса, но ниже кнопок-хитов */
+    pointer-events: none; /* Чтобы диск не мешал кликать по кнопкам */
+    border-radius: 50%;
+}
+
+/* Добавь это, если хочешь, чтобы диск крутился при игре */
+.spinning {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
