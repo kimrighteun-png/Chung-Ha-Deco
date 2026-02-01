@@ -53,18 +53,16 @@ function renderDisks() {
 
     if (!albumData) return;
 
-    content.innerHTML =`
-        <div class="page-spread">
-            <img src="visual/cdbinder/cdbinderpl1.webp" class="layer-bottom">
-            <div class="disk-slot">
-                <img src="CDs/${albumKey.toLowerCase()}.webp" id="disk-hands" class="cd-disk" draggable="false">
-            </div>
-            <img src="visual/cdbinder/cdbinderpl2.webp" class="layer-top">
+    content.innerHTML = `
+    <div class="page-spread">
+        <img src="visual/cdbinder/cdbinderpl1.webp" class="layer-bottom">
+        <div class="disk-slot">
+            <img src="CDs/${albumKey.toLowerCase()}.webp" class="cd-disk" draggable="false">
         </div>
-        <div class="binder-controls">
-            <button id="use-disk-btn" class="use-btn">Использовать диск</button>
-        </div>
-    `;
+        <img src="visual/cdbinder/cdbinderpl2.webp" class="layer-top">
+    </div>
+    <button id="use-disk-btn" class="use-btn fixed-button">Использовать диск</button>
+`;
 
     document.getElementById('use-disk-btn').onclick = () => {
         insertDisk(albumKey);

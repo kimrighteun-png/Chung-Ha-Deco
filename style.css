@@ -20,31 +20,13 @@ body, html {
 
 .active { display: block; }
 
-/* ПАНОРАМА */
-.panorama-viewport {
-    width: 100vw;
-    height: 100vh;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-}
-
-.panorama-viewport::-webkit-scrollbar { display: none; }
-
-.panorama-content {
-    display: flex;
-    width: 200vw;
-    height: 100vh;
-}
-
 .work-page {
     width: 100vw;
     height: 100vh;
     flex-shrink: 0;
     scroll-snap-align: start;
     position: relative;
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
 }
 
@@ -52,7 +34,6 @@ body, html {
 #main-menu {
     background-image: url('visual/backgrounds/startpagebackground.webp');
 }
-
 #page-left {
     background-image: url('visual/backgrounds/basebackground.webp');
 }
@@ -181,123 +162,4 @@ body, html {
     50% { content: url('visual/loadingbembi/loadingbembi3.webp'); }
     75% { content: url('visual/loadingbembi/loadingbembi4.webp'); }
     100% { content: url('visual/loadingbembi/loadingbambi1.webp'); }
-}
-
-#game-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.screen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.3s ease;
-}
-
-.hidden {
-    display: none; /* Или opacity: 0 и pointer-events: none */
-}
-
-/* Белый прямоугольник на столе */
-#binder-closed {
-    position: absolute;
-    left: 10%;
-    top: 40%;
-    width: 150px;
-    height: 200px;
-    background: white;
-    border: 2px solid #ccc;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: sans-serif;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-}
-
-/* Стили для открытого биндера */
-#binder-view {
-    background: #f0f0f0; /* Цвет стола при виде сверху */
-    padding: 20px;
-}
-
-.binder-content {
-    display: flex;
-    gap: 40px;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-.binder-placeholder {
-    width: 500px;
-    height: 600px;
-    background: #fff;
-    border: 1px solid #000;
-}
-
-.cards-side-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.card-slot {
-    width: 100px;
-    height: 140px;
-    background: #ddd;
-    border: 1px dashed #666;
-}
-
-
-#binder-closed {
-    position: absolute;
-    left: 10px; /* Можешь поменять, чтобы подвинуть его на столе */
-    top: 260px;
-    width: 50px;
-    height: 190px;
-    background: white;
-    border: 3px solid #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 99; /* Чтобы был выше фона, но ниже навигации */
-}
-
-#binder-view {
-    position: fixed; /* Поверх всего */
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    z-index: 5000; /* Самый высокий приоритет */
-
-    /* ТВОЙ ФОН */
-    background-image: url('visual/backgrounds/table.webp');
-    background-size: cover;
-    background-position: center;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Скрываем экран по умолчанию */
-#binder-view.hidden {
-    display: none !important;
-}
-
-/* Кнопка закрытия */
-.close-binder-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background: white;
-    border: 2px solid #333;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
 }

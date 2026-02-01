@@ -1,43 +1,35 @@
 <!DOCTYPE html>
-<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Chungha Birthday Project</title>
+    <title>Chungha Deco</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="collection.css">
     <link rel="stylesheet" href="shop.css">
     <link rel="stylesheet" href="audio.css">
       <link rel="stylesheet" href="cdbinder.css">
 </head>
+
+
+
 <body>
   <div id="loading-screen" class="hidden">
     <img id="main-paw" src="visual/loadingpaw/loadingpow1.webp" alt="loading">
-
     <img id="main-aran" src="visual/loadingaran/loadingaran1.webp" alt="aran">
     <img id="main-bembi" src="visual/loadingbembi/loadingbambi1.webp" alt="bembi">
 </div>
 
-    <div id="heart-display">❤️ <span id="h-count">0</span></div>
+<!--<div id="heart-display">❤️ <span id="h-count">0</span></div> -->
 
     <section id="main-menu" class="screen active">
         <div class="centered-content">
             <h1 class="main-title">CHUNG HA DECO</h1>
-            <button class="start-btn" onclick="startGame()">НАЧАТЬ</button>
+            <button class="start-btn" onclick="startGame()">START</button>
         </div>
     </section>
 
-    <section id="work-zone" class="screen">
-        <div class="panorama-viewport">
-            <div class="panorama-content">
-
+<section id="work-zone" class="screen">
                 <div class="work-page" id="page-left">
-                    <div class="screen-title">ХРАНЕНИЕ</div>
-                    <div id="binder-closed" onclick="openBinder()">БИНДЕР</div>
-                </div>
-
-                <div class="work-page" id="page-right">
-                    <div class="screen-title">РАБОЧИЙ СТОЛ</div>
                     <div class="side-player">
         <div class="player-body">
             <img src="visual/cdplayer.webp" alt="Player">
@@ -49,50 +41,34 @@
             <div id="btn-minus" class="hit" onclick="changeVolume(-0.1)"></div>
             <div id="btn-mode" class="hit" onclick="toggleMode()"></div>
         </div> </div> <div id="binder-spine" onclick="openCdBinder()">
-        <img src="visual/cdbinder/cdbinder.webp" alt="Binder Spine">
-    </div>
+        <img src="visual/cdbinder/cdbinder.webp" alt="Binder Spine"></div>
 <div id="cd-binder-overlay" class="hidden">
     <div class="binder-content">
         <button class="close-btn" onclick="closeCdBinder()">✕</button>
-
         <div id="binder-page" class="page-container">
-
-    <div id="binder-cover" onclick="flipPage()">
+        <div id="binder-cover" onclick="flipPage()">
         <img src="visual/cdbinder/cdbinder_cover.webp" alt="Cover">
-    </div>
-
+        </div>
     <div id="binder-spread" class="hidden">
         <img src="visual/cdbinder/cdbinderpl1.webp" class="layer-bottom">
-
         <div class="disk-slot">
             <img src="CDs/handsonme.webp" id="disk-hands" class="cd-disk" draggable="true">
         </div>
-
         <img src="visual/cdbinder/cdbinderpl2.webp" class="layer-top">
     </div>
-</div>
-        <div class="binder-controls">
-            <button onclick="prevBinderPage()">◀</button>
-            <button onclick="nextBinderPage()">▶</button>
         </div>
     </div>
 </div>
-                    </div>
                 </div>
-
-            </div>
-        </div>
-
         <div class="nav-column">
             <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
             <div class="square-btn" onclick="showScreen('shop')">МАГ</div>
             <div class="square-btn" onclick="showScreen('dogs-room')">ПЁС</div>
             <div class="square-btn" onclick="showScreen('social-feed')">СОЦ</div>
         </div>
-    </section>
+</section>
 
-    <section id="shop" class="screen">
-    <div class="screen-title">МАГАЗИН</div>
+<!--    <section id="shop" class="screen">
 
     <div class="gacha-container">
         <div class="gacha-box" onclick="pullGacha()">
@@ -106,22 +82,20 @@
         <div class="square-btn" onclick="showScreen('work-zone')">ДОМ</div>
     </div>
 </section>
+-->
 
 <div id="gacha-result">
     <div class="result-card" id="result-card-img"></div>
     <h2 id="result-card-name" style="color: white; margin-top: 15px;"></h2>
 </div>
-</section>
 
     <section id="dogs-room" class="screen">
-        <div class="screen-title">АРАН И БЭМБИ</div>
         <div class="nav-column">
             <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
             <div class="square-btn" onclick="showScreen('work-zone')">ДОМ</div>
         </div>
     </section>
     <section id="social-feed" class="screen">
-        <div class="screen-title">СОЦСЕТЬ</div>
         <div class="nav-column">
             <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
             <div class="square-btn" onclick="showScreen('work-zone')">ДОМ</div>
