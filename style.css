@@ -46,6 +46,7 @@ body, html {
 #dogs-room { background-color: #f1f8e9; }
 #social-feed { background-color: #ede7f6; }
 #profile-screen { background-color: #ffffff; }
+#dogsroom1 {background-image: url('visual/backgrounds/dogsroombackground.webp')}
 
 /* ИНТЕРФЕЙС */
 .nav-column {
@@ -163,3 +164,13 @@ body, html {
     75% { content: url('visual/loadingbembi/loadingbembi4.webp'); }
     100% { content: url('visual/loadingbembi/loadingbambi1.webp'); }
 }
+
+
+
+#heart-display {
+    position: absolute; bottom: 92%; left: 5%;
+    background: white;
+    padding: 2% 5%;
+    border-radius: 25px;
+    border: 2px solid #ff4081; font-weight: bold;
+    z-index: 100; opacity: 0; transition: 0.5s;

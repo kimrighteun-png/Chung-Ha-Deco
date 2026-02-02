@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="collection.css">
     <link rel="stylesheet" href="shop.css">
     <link rel="stylesheet" href="audio.css">
-      <link rel="stylesheet" href="cdbinder.css">
+    <link rel="stylesheet" href="cdbinder.css">
+    <link rel="stylesheet" href="dogs.css">
 </head>
 
 
@@ -19,7 +20,7 @@
     <img id="main-bembi" src="visual/loadingbembi/loadingbambi1.webp" alt="bembi">
 </div>
 
-<!--<div id="heart-display">❤️ <span id="h-count">0</span></div> -->
+<div id="heart-display">❤️ <span id="h-count">0</span></div>
 
     <section id="main-menu" class="screen active">
         <div class="centered-content">
@@ -62,9 +63,9 @@
                 </div>
         <div class="nav-column">
             <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
-            <div class="square-btn" onclick="showScreen('shop')">МАГ</div>
-            <div class="square-btn" onclick="showScreen('dogs-room')">ПЁС</div>
-            <div class="square-btn" onclick="showScreen('social-feed')">СОЦ</div>
+            <div class="square-btn" onclick="showScreen('shop')">Shop</div>
+            <div class="square-btn" onclick="showScreen('dogs-room')">Dogs</div>
+            <div class="square-btn" onclick="showScreen('social-feed')">Network</div>
         </div>
 </section>
 
@@ -84,45 +85,77 @@
 </section>
 -->
 
-<div id="gacha-result">
+<!--<div id="gacha-result">
     <div class="result-card" id="result-card-img"></div>
     <h2 id="result-card-name" style="color: white; margin-top: 15px;"></h2>
-</div>
+</div> -->
 
     <section id="dogs-room" class="screen">
         <div class="nav-column">
             <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
-            <div class="square-btn" onclick="showScreen('work-zone')">ДОМ</div>
+            <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
         </div>
+        <button class = "dogs-roomb" onclick="showScreen('dogsroom1')"> room </button>
     </section>
-    <section id="social-feed" class="screen">
+
+    <section id="dogsroom1" class = "screen">
+
+      <div class="nav-column">
+          <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
+          <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
+      </div>
         <div class="nav-column">
             <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
-            <div class="square-btn" onclick="showScreen('work-zone')">ДОМ</div>
+            <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
         </div>
-    </section>
+        <div class="dog-container">
+          <div class="dog-card" id="aranroom1">
+            <div class="dog-status">
+              <span id = "aranroom1-status"> Hungry </span>
+            </div>
+            <div class="dog-timer" id="aranroom1-timer"> You can feed her! </div>
+            <button class="feed-btn" data-dog="aranroom1">Feed</button>
+            <div class="dog-image">
+              <img src="dogs\aranhungry.webp" class="hungry-img">
+              <img src="dogs\aranfull.webp" class="full-img" style="display:none;">
+            </div>
+
+            </div>
+            <div class="dog-card" id="bambiroom1">
+              <div class="dog-status">
+                <span id = "bambiroom1-status"> Hungry </span>
+              </div>
+              <div class="dog-timer" id="bambiroom1-timer"> You can feed him! </div>
+              <button class="feed-btn" data-dog="bambiroom1">Feed</button>
+              <div class="dog-image">
+                <img src="dogs\bambihungry.webp" class="hungry-img">
+                <img src="dogs\bambifull.webp" class="full-img" style="display:none;">
+              </div>
+
+            </div>
+          </div>
+            </section>
     <section id="profile-screen" class="screen">
         <div class="centered-content">
             <div class="profile-card">
-                <h2>ПРОФИЛЬ</h2>
+                <h2>Profile</h2>
                 <div class="profile-avatar">👤</div>
-                <p>КОД: <b>CH-2026-X</b></p>
+                <p>Code: <b>CH-2026-X</b></p>
                 <hr>
-                <p class="badges-info">Тут будут твои бейджики</p>
+                <p class="badges-info">You Have No Bages</p>
             </div>
         </div>
         <div class="nav-column">
-            <div class="square-btn" onclick="showScreen('work-zone')">НАЗАД</div>
+            <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
         </div>
     </section>
     <section id="binder-view" class="hidden">
     <div class="binder-overlay">
-      <button id="inventory-btn">Инвентарь</button>
+      <button id="inventory-btn">inventory</button>
 <div id="inventory-window" class="hidden">
     <div class="cards-storage">
         </div>
 </div>
-        <button class="close-binder-btn" onclick="closeBinder()">✕ Закрыть</button>
     </div>
 </section>
 
@@ -147,5 +180,6 @@
 <script src="cards-data.js"></script>
 <script src="collection.js"></script>
 <script src="shop.js"></script>
+<script src="dogs.js"></script>
 </body>
 </html>

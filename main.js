@@ -10,6 +10,7 @@ setTimeout(() => {
     loader.classList.add('hidden');
 
     // Показываем счетчик и переходим в игру
+    document.getElementById('heart-display').style.opacity = '1';
     showScreen('work-zone');
 }, 1500);
 }

@@ -1,0 +1,80 @@
+.dogs-roomb {
+  position: absolute;
+  width: 30%;
+  height: 10%;
+  top: 40%;
+  left: 10%;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 24px;
+}
+
+
+
+
+.dog-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* ТОЧНОЕ ЦЕНТРИРОВАНИЕ */
+    gap: -5%;
+    width: 110%;
+}
+
+.dog-card {
+    text-align: center;
+    width: 120%;
+}
+
+.dog-image {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dog-image img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.dog-status {
+    margin: 1% 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.dog-timer {
+    margin: 1% 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.feed-btn {
+    padding: 1% 8%;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 5%;
+    width: 40%;
+}
+
+.feed-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Разные размеры карточек */
+#aranroom1 {
+    transform: scale(0.8);
+    margin-top: 10%;
+}
+
+#bambiroom1 {
+    transform: scale(1.1);
+}
