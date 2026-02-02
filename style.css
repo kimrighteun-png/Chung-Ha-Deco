@@ -1,3 +1,4 @@
+
 :root {
     --btn-size: 55px;
 }
@@ -174,5 +175,3 @@ body, html {
     border-radius: 25px;
     border: 2px solid #ff4081; font-weight: bold;
     z-index: 100; opacity: 0; transition: 0.5s;
-
-

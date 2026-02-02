@@ -16,7 +16,7 @@
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 55%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%); /* ТОЧНОЕ ЦЕНТРИРОВАНИЕ */
     gap: -5%;
@@ -78,6 +78,3 @@
 #bambiroom1 {
     transform: scale(1.1);
 }
-
-
-
