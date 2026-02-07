@@ -246,5 +246,14 @@
 <script src="binder.js"></script>
 <script src="decoration.js"></script>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Находим все картинки, у которых нет loading, и делаем их ленивыми
+    document.querySelectorAll('img:not([loading])').forEach(img => {
+        img.setAttribute('loading', 'lazy');
+    });
+});
+</script>
 </body>
 </html>

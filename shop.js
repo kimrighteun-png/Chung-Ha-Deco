@@ -10,37 +10,43 @@ function initShopShelves() {
     const cards = window.allCards || [];
     const inventory = window.playerInventory || [];
 
-    // Разбиваем карты на 3 полки
+    // ДОБАВЛЯЕМ ЭТО: загружаем данные биндера, чтобы проверить карты там
+    const binderData = JSON.parse(localStorage.getItem('chungha_binder_data')) || {};
+    const cardsInBinder = Object.values(binderData).map(id => String(id)); // Массив ID из биндера
+
     const perShelf = Math.ceil(cards.length / shelves.length);
 
     shelves.forEach((shelf, index) => {
-        if (!shelf) return; // Проверка, что полка существует в HTML
+        if (!shelf) return;
 
         const start = index * perShelf;
         const end = start + perShelf;
         const shelfCards = cards.slice(start, end);
 
         shelfCards.forEach(card => {
+            const sId = String(card.id);
+
+            // ИЗМЕНЕННАЯ ПРОВЕРКА: есть в инвентаре ИЛИ в биндере
+            const isOwned = inventory.map(String).includes(sId) || cardsInBinder.includes(sId);
+
             const cardEl = document.createElement('div');
             cardEl.className = 'shop-card';
-            cardEl.innerHTML = `
+            cardEl.innerHTML =`
                 <img src="${card.image}" alt="">
                 <div class="card-price">${card.price} ❤️</div>
                 <button class="buy-btn" data-id="${card.id}">
-                    ${inventory.includes(card.id) ? 'OWNED' : 'BUY'}
+                    ${isOwned ? 'OWNED' : 'BUY'}
                 </button>
             `;
 
-            // Добавляем карточку в текущую полку
             shelf.appendChild(cardEl);
 
-            // обработчик кнопки покупки
             const btn = cardEl.querySelector('.buy-btn');
             btn.addEventListener('click', () => buyCard(card.id, btn));
-            if (inventory.includes(card.id)) btn.disabled = true;
-        }); // Конец shelfCards.forEach
-    }); // Конец shelves.forEach
-} // Конец initShopShelves
+            if (isOwned) btn.disabled = true;
+        });
+    });
+}
 
 function buyCard(cardId, buttonEl) {
     const inventory = window.playerInventory || [];

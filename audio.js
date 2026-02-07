@@ -67,6 +67,7 @@ let isPlaying = false;
 // ИНИЦИАЛИЗАЦИЯ ПЛЕЕРА
 const audioPlayer = new Audio();
 audioPlayer.volume = 0.5;
+audioPlayer.preload = 'none';
 
 // АВТОМАТИКА: Когда песня заканчивается, сама вызывается следующая
 audioPlayer.onended = () => {
@@ -82,6 +83,7 @@ function updateTrack(keepTime = false) {
     const trackName = album.tracks[currentTrackIndex];
     const savedTime = keepTime ? audioPlayer.currentTime : 0;
 
+    audioPlayer.preload = 'none';
     audioPlayer.src = album.folder + subFolder + trackName;
 
     audioPlayer.onloadedmetadata = () => {
@@ -171,6 +173,7 @@ function toggleMode() {
 function stopAudio() {
     audioPlayer.pause();
     audioPlayer.src = "";
+    audioPlayer.load();
     currentAlbumKey = null;
     currentTrackIndex = 0;
     isInstrumental = false;
