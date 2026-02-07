@@ -31,7 +31,7 @@
 
 /* 2. КОНТЕЙНЕР КНИГИ - ТОЛЬКО ОДИН БЛОК */
 .cardbinder-book {
-    width: 80%;
+    width: 90%;
     height: 60%;
     position: relative;
     /* 1. Сдвигаем влево: меняем center на left */
@@ -57,8 +57,8 @@
 
 /* 3. ОБЛОЖКА И РАЗВОРОТ */
 #main-cover {
-    width: 85% !important;
-    height: 85% !important;
+    width: 90% !important;
+    height: 90% !important;
     object-fit: contain;
     cursor: pointer;
     display: block;
