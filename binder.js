@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     book.addEventListener('click', function(event) {
         // 1. ПРОВЕРКА: Если кликнули по навигации — СТОП (добавил ||)
         if (event.target.closest('.nav-column') || event.target.closest('.back-btn')) {
-            return;
+            return;}
 
         const rect = book.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-    }; // Здесь всё закрыто правильно
+    }); // Здесь всё закрыто правильно
 });
 
 // 3. ЛОГИКА СТРАНИЦ

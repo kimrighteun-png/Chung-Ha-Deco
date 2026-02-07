@@ -31,7 +31,7 @@
 
 /* 2. КОНТЕЙНЕР КНИГИ - ТОЛЬКО ОДИН БЛОК */
 .cardbinder-book {
-    width: 90%;
+    width: 80%;
     height: 60%;
     position: relative;
     /* 1. Сдвигаем влево: меняем center на left */
