@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainCover = document.getElementById('main-cover');
 
     book.addEventListener('click', function(event) {
-        // 1. ПРОВЕРКА: Если кликнули по навигации — СТОП
+        // 1. Проверка клика по навигации
         if (event.target.closest('.nav-column') || event.target.closest('.back-btn')) {
             return;
-        } // <-- ТУТ БЫЛА ОШИБКА (пропущена скобка)
+        }
 
         const rect = book.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
@@ -37,28 +37,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 spread.classList.remove('hidden');
                 mainCover.classList.add('hidden');
                 currentBinderPage = 0;
-                if (typeof renderBinderPage === 'function') renderBinderPage(0);
+                renderBinderPage(0);
             }
         } else {
             if (isRight) {
-                // Проверяем, существует ли функция, прежде чем вызывать
-                const isFull = typeof checkIfPageFull === 'function' ? checkIfPageFull() : true;
-                if (isFull) {
+                if (checkIfPageFull()) {
                     currentBinderPage++;
-                    if (typeof renderBinderPage === 'function') renderBinderPage(currentBinderPage);
+                    renderBinderPage(currentBinderPage);
                 }
             } else {
                 if (currentBinderPage > 0) {
                     currentBinderPage--;
-                    if (typeof renderBinderPage === 'function') renderBinderPage(currentBinderPage);
+                    renderBinderPage(currentBinderPage);
                 } else {
                     spread.classList.add('hidden');
                     mainCover.classList.remove('hidden');
                 }
             }
         }
-    }); // <-- ТУТ БЫЛА ОШИБКА (лишняя скобка удалена)
-});
+    }); // Закрытие addEventListener
+}); // Закрытие DOMContentLoaded
+
 
 
 // 3. ЛОГИКА СТРАНИЦ
