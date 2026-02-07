@@ -14,21 +14,6 @@
     background-color: #000; /* Или твой фон */
 }
 
-/* 2. Фикс для книги (Биндера) */
-.cardbinder-book {
-    position: relative;
-    max-width: 95%; /* Чтобы не вжималась в края */
-    max-height: 70vh; /* Ограничиваем высоту, чтобы кнопки внизу не уплывали */
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 3. Фикс для кнопок навигации и инвентаря */
-.nav-column {
-    z-index: 100;
-}
 
 #inventory-btn {
     position: absolute !important;
