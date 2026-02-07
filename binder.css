@@ -81,7 +81,7 @@
     left: 0% !important;
     width: 200% !important;
     height: 200% !important;
-    min-height: 90% !important;
+    min-height: 200% !important;
     object-fit: contain;
 }
 
