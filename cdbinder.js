@@ -4,7 +4,6 @@ const binderAlbums = [
     "BloomingBlue",
     "gottago",  // Страница 3
     "Flourishing",
-
     "algorithm"
     // ... и так далее до 13
 ];

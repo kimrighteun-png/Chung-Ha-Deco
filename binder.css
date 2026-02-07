@@ -50,7 +50,7 @@
     z-index: 100;
     /* МАГИЯ МАСШТАБА: сжимает всю конструкцию 900x650 под экран телефона,
        НЕ меняя внутренние координаты и проценты слоев */
-    transform: scale(min(1, calc(90vw / 900), calc(70vh / 650)));
+    /*transform: scale(min(1, calc(90vw / 900), calc(70vh / 650)));
     transform-origin: center center;
     flex-shrink: 0; /* Чтобы flex не сплющивал книгу */
 }
