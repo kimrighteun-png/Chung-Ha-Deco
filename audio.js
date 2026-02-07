@@ -11,19 +11,52 @@ const library = {
         ]
     },
     "algorithm": {
-        title: "Hands On Me",
+        title: "Algorithm",
         folder: "Music/Algorithm/",
         tracks: [
             "algorithm.ogg"
         ]
     },
     "gottago": {
-        title: "Hands On Me",
+        title: "Gotta Go",
         folder: "Music/GottaGo/",
         tracks: [
             "gottago.ogg"
         ]
-      }
+      },
+      "Offset": {
+          title: "Offset",
+          folder: "Music/Offset/",
+          tracks: [
+              "1offset.ogg",
+              "2rollercoaster.ogg",
+              "3doit.ogg",
+              "4badboy.ogg",
+              "5remindofyou.ogg"
+          ]
+        },
+          "BloomingBlue": {
+              title: "Blooming Blue",
+              folder: "Music/BloomingBlue/",
+              tracks: [
+                  "1bb.ogg",
+                  "2loveu.ogg",
+                  "3cherrykisses.ogg",
+                  "4drive.ogg",
+                  "5fromnowon.ogg"
+                ]
+              },
+            "Flourishing": {
+                  title: "Flourishing",
+                  folder: "Music/Flourishing/",
+                  tracks: [
+                      "1chica.ogg",
+                      "2younginlove.ogg",
+                      "3callitlove.ogg",
+                      "4flourishing.ogg",
+                      "5snapping.ogg"
+                    ]
+                  }
 }
 
 let currentAlbumKey = null;

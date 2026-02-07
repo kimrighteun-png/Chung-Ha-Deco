@@ -1,0 +1,181 @@
+/* Экран биндерa */
+#cardbinder-screen {
+    position: fixed; /* экран поверх игры */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    display: flex; /* центрируем книгу */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Скрытие элементов через класс hidden */
+#cardbinder-screen.hidden {
+    display: none !important;
+}
+
+
+
+
+/* Контейнер книги */
+.cardbinder-book {
+    width: 900px;
+    height: 650px;
+    position: relative; /* для разворота */
+}
+
+/* Обложка книги */
+#main-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+    display: block;
+    z-index: 10;
+}
+
+/* Разворот */
+#cardbinder-spread {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+}
+
+/* Слои разворота */
+.cardbinder-layer {
+    position: absolute;
+    top: -50%;
+    left: -90%;
+    width: 200%;
+    height: 200%;
+    object-fit: contain;
+}
+
+.cardbinder-layer-1 {
+  z-index: 1;
+  opacity: 1.0;
+ }
+.cardbinder-layer-2 {
+  z-index: 2;
+  opacity:0.4;
+ }
+ /* binder.css */
+ /* binder.css */
+ /* binder.css */
+
+ /* 1. Сетка: 4 зоны, сдвинуты правее, слой за декором */
+ /* binder.css */
+.cardbinder-layer-3 {
+    position: absolute !important;
+    top: 15%;
+    left: 5%;
+    width: 80% !important;
+    height: 80% !important;
+    display: grid !important;
+
+    /* Две колонки и две строки */
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: 1fr 1fr !important;
+
+    /* 1. ОПУСКАЕМ ВЕРХНИЙ РЯД:
+       Увеличь это число (например, до 40%), чтобы верхние карты ушли ниже */
+    padding-top: 0 !important;
+
+    /* 2. СБЛИЖАЕМ КОЛОНКИ:
+       Второе число (0%) прижмет левую колонку к правой по центру */
+    gap: 0 !important;
+
+    z-index: 3 !important;
+    pointer-events: auto !important;
+}
+
+/* Выбираем 3-й и 4-й слоты (нижний ряд) */
+.cards-slot:nth-child(3),
+.cards-slot:nth-child(4) {
+    /* Отрицательный margin тянет элемент ВВЕРХ */
+    /* Увеличивай это число (например, до -15%), если нужно поднять еще выше */
+    margin-top: -40% !important;
+}
+
+.cards-slot:nth-child(1),
+.cards-slot:nth-child(3) {
+    /* Отрицательный margin тянет элемент ВВЕРХ */
+    /* Увеличивай это число (например, до -15%), если нужно поднять еще выше */
+    margin-left: 15% !important;
+}
+
+.cards-slot {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    /* 4. УБИРАЕМ ПУНКТИРЫ */
+    border: none !important;
+}
+
+.binder-card img {
+    width: 75% !important;
+    height: auto !important;
+    max-height: 90% !important;
+    margin: 0;
+    object-fit: contain !important;
+    /* 3. УВЕЛИЧИВАЕМ СКРУГЛЕНИЕ: ставим 25px или больше для мягких углов */
+    border-radius: 25px !important;
+    pointer-events: none;
+}
+.cardbinder-layer-4 {
+    z-index: 4;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Корешок */
+#cardbinder-spine {
+    position: absolute;
+    width: 60vw;      /* 3% от ширины окна */
+    height: 60vh;    /* 15% от высоты окна */
+    left: 2vw;      /* отступ 2% от правого края */
+    bottom: 13vh;    /* отступ 10% от низа */
+    cursor: pointer;
+    z-index: 5;
+}
+
+/* Важно: ограничить картинку */
+#cardbinder-spine img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+#cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 колонки */
+    grid-template-rows: 1fr 1fr;    /* 2 ряда */
+    gap: 10px;
+    padding: 10% 15% !important; /* Настрой отступы под свою картинку биндера */
+}
+
+
+
+.cards-slot.drag-over {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.binder-card {
+    width: 90%;
+    height: 90%;
+}
+
+.binder-card img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}

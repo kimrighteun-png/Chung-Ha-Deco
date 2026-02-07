@@ -44,17 +44,21 @@ body, html {
 }
 
 #shop { background-image: url('visual/backgrounds/shopbackground.webp'); }
-#dogs-room { background-color: #f1f8e9; }
+#dogs-room { background-image: url('visual/backgrounds/dogsmenubackground.webp'); }
 #social-feed { background-color: #ede7f6; }
 #profile-screen { background-color: #ffffff; }
-#dogsroom1 {background-image: url('visual/backgrounds/dogsroombackground.webp')}
+#dogsroom1 {background-image: url('visual/backgrounds/dogsroombackground.webp');}
+#cardbinder-screen {background-image: url("visual/backgrounds/table.webp");}
+#decoration-screen {background-image: url("visual/backgrounds/table.webp");}
 
 /* ИНТЕРФЕЙС */
 .nav-column {
     position: absolute;
     top: 20px; right: 15px;
     display: flex; flex-direction: column;
-    gap: 12px; z-index: 1000;
+    gap: 12px;
+    z-index: 100 !important; /* Больше, чем у экрана */
+    pointer-events: auto !important;
 }
 
 .profile-btn {

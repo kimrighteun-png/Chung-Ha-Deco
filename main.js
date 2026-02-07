@@ -16,7 +16,45 @@ setTimeout(() => {
 }
 
 function showScreen(screenId) {
-document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-const target = document.getElementById(screenId);
-if(target) target.classList.add('active');
+    document.querySelectorAll('.screen').forEach(s => {
+        s.classList.remove('active'); // Твоя старая логика
+        s.classList.add('hidden');    // Добавляем скрытие для биндера
+    });
+
+    const target = document.getElementById(screenId);
+    if (target) {
+        target.classList.add('active');
+        target.classList.remove('hidden'); // Убираем скрытие у нового экрана
+    }
 }
+
+
+
+
+// === ПРОСТОЙ LAZY LOAD ДЛЯ ТВОЕЙ БИБЛИОТЕКИ ===
+
+// 1. Находим ВСЕ аудио элементы на странице
+const allAudios = document.querySelectorAll('audio');
+
+// 2. Для каждого аудио отключаем предзагрузку
+allAudios.forEach(audio => {
+    audio.setAttribute('preload', 'none'); // Важно!
+});
+
+// 3. Загружаем аудио только когда начинается воспроизведение
+allAudios.forEach(audio => {
+    audio.addEventListener('play', function() {
+        if (!this.dataset.loaded) {
+            console.log('Загружаю аудио:', this.src);
+            this.dataset.loaded = 'true';
+        }
+    });
+
+    // Опционально: предзагрузка при наведении
+    audio.addEventListener('mouseenter', function() {
+        if (!this.dataset.loaded && !this.dataset.hovered) {
+            this.load(); // Предзагружаем
+            this.dataset.hovered = 'true';
+        }
+    });
+});

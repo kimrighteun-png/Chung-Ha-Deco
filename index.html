@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="audio.css">
     <link rel="stylesheet" href="cdbinder.css">
     <link rel="stylesheet" href="dogs.css">
+    <link rel="stylesheet" href="binder.css">
+    <link rel="stylesheet" href="decoration.css">
 </head>
 
 
@@ -60,35 +62,94 @@
         </div>
     </div>
 </div>
+<!-- Корешок на основном столе -->
+<div id="cardbinder-spine" onclick="openCardBinderScreen()">
+    <img src="visual/binder/binder.webp" alt="Карточный биндер">
+</div>
                 </div>
         <div class="nav-column">
             <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
             <div class="square-btn" onclick="showScreen('shop')">Shop</div>
             <div class="square-btn" onclick="showScreen('dogs-room')">Dogs</div>
-            <div class="square-btn" onclick="showScreen('social-feed')">Network</div>
+            <!--<div class="square-btn" onclick="showScreen('social-feed')">Network</div> -->
         </div>
 </section>
 
-<!--    <section id="shop" class="screen">
+<!-- НОВЫЙ ЭКРАН ТОЛЬКО С БИНДЕРОМ -->
+<!-- В cardbinder-screen меняем классы слоев -->
+<section id="cardbinder-screen" class="screen hidden">
+  <!-- Навигация вне книги, как в других экранах -->
+  <div class="nav-column">
+      <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
+      <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
+  </div>
+  <button id="inventory-btn" class="inventory-btn">Inventory (0)</button>
 
-    <div class="gacha-container">
-        <div class="gacha-box" onclick="pullGacha()">
-            <img src="visual/icons/albumicon.png" alt="" class="gacha-icon">
-        </div>
-        <button class="buy-btn" onclick="pullGacha()">20 ♡</button>
+  <!-- Окно инвентаря тоже ВНУТРИ экрана -->
+  <div id="inventory-window" class="hidden">
+      <div class="inventory-header">
+      </div>
+      <div id="inventory-grid" class="inventory-grid"></div>
+  </div>
+  <div class="cardbinder-book">
+      <img id="main-cover" src="visual/binder/bindercover.webp" class="layer">
+      <div id="cardbinder-spread" class="hidden">
+          <img src="visual/binder/binderpl1.webp" class="cardbinder-layer cardbinder-layer-1">
+          <img src="visual/binder/binderpl2.webp" class="cardbinder-layer cardbinder-layer-2">
+          <div id="cards-grid" class="cardbinder-layer cardbinder-layer-3">
+      <div class="cards-slot" data-slot="1"></div>
+      <div class="cards-slot" data-slot="2"></div>
+      <div class="cards-slot" data-slot="3"></div>
+      <div class="cards-slot" data-slot="4"></div>
+  </div>
+          <img src="visual/binder/binderpl3.webp" class="cardbinder-layer cardbinder-layer-4">
+      </div>
+  </div>
+
+</section>
+
+
+<section id="decoration-screen" class="screen hidden">
+    <div class="nav-column">
+        <div class="square-btn" onclick="showScreen('cardbinder-screen')">Back</div>
+        <button class="text-color-btn save-gallery-btn" onclick="saveToGallery()">💾</button>
+
     </div>
+
+    <div class="decoration-main-layout">
+        <div id="selected-card-preview" class="selected-card-preview">
+            <!-- Карта вставится через JS -->
+        </div>
+
+        <!-- Панель с названиями цветов -->
+        <div class="decoration-bottom-bar">
+            <button class="text-color-btn" onclick="selectColor('Pink')">Pink</button>
+            <button class="text-color-btn" onclick="selectColor('Blue')">Blue</button>
+            <button class="text-color-btn" onclick="selectColor('Green')">Green</button>
+            <button class="text-color-btn" onclick="selectColor('Yellow')">Yellow</button>
+            <button class="text-color-btn" onclick="selectColor('Purple')">Purple</button>
+            <button class="text-color-btn" onclick="selectColor('White')">White</button>
+            <button class="text-color-btn" onclick="selectColor('Black')">Black</button>
+        </div>
+        <div id="sticker-list" class="sticker-list-container">
+       <!-- Сюда JS будет подгружать webp-картинки -->
+   </div>
+    </div>
+</section>
+
+
+
+<section id="shop" class="screen">
 
     <div class="nav-column">
         <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
         <div class="square-btn" onclick="showScreen('work-zone')">ДОМ</div>
     </div>
+    <!-- Три полочки с горизонтальной прокруткой -->
+    <div class="shelf" id="shelf-1"></div>
+    <div class="shelf" id="shelf-2"></div>
+    <div class="shelf" id="shelf-3"></div>
 </section>
--->
-
-<!--<div id="gacha-result">
-    <div class="result-card" id="result-card-img"></div>
-    <h2 id="result-card-name" style="color: white; margin-top: 15px;"></h2>
-</div> -->
 
     <section id="dogs-room" class="screen">
         <div class="nav-column">
@@ -173,13 +234,17 @@
     </div>
 </div>
 
-    <script src="main.js"></script>
-    <script src="cdbinder.js"></script>
-    <script src="audio.js"></script>
+<script src="main.js"></script>
+<script src="cdbinder.js"></script>
+<script src="audio.js"></script>
 <script src="economy.js"></script>
 <script src="cards-data.js"></script>
 <script src="collection.js"></script>
 <script src="shop.js"></script>
 <script src="dogs.js"></script>
+<script src="inventory.js"></script>
+<script src="binder.js"></script>
+<script src="decoration.js"></script>
+
 </body>
 </html>

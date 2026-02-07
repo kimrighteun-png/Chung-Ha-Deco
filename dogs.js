@@ -1,14 +1,16 @@
-// dogs.js - ВСТАВЬ ЭТО В САМОЕ НАЧАЛО ФАЙЛА
-console.log('🐶 DOGS.JS ЗАГРУЖЕН! ВЕРСИЯ: 1.0');
+// dogs.js - ТВОЙ КОД БЕЗ ИЗМЕНЕНИЙ, ТОЛЬКО ДОБАВЛЯЕМ НАЧИСЛЕНИЕ
+
 
 // ТВОЙ СУЩЕСТВУЮЩИЙ КОД...
 
 // dogs.js - только таймеры и смена картинок
 document.addEventListener('DOMContentLoaded', function() {
+
     // Вешаем обработчики на кнопки
     document.querySelectorAll('.feed-btn').forEach(button => {
         button.addEventListener('click', function() {
             const dogId = this.getAttribute('data-dog');
+            console.log('Клик по кнопке кормления:', dogId);
             feedDog(dogId);
         });
     });
@@ -24,18 +26,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 60000);
 });
 
-// Кормление собаки
+// Кормление собаки - ДОБАВЛЯЕМ ТОЛЬКО НАЧИСЛЕНИЕ ВАЛЮТЫ
 function feedDog(dogId) {
-    if (!canFeed(dogId)) return;
+    console.log('Вызов feedDog для:', dogId);
 
-    // Сохраняем время кормления
+    if (!canFeed(dogId)) {
+        console.log('Собака еще не голодна');
+        return;
+    }
+
+    // НАЧИСЛЯЕМ ВАЛЮТУ - ТОЛЬКО ЭТО ДОБАВЛЯЕМ
+    if (typeof window.addHearts === 'function') {
+        window.addHearts(5);
+    }
+
+    // Сохраняем время кормления (ТВОЙ КОД)
     localStorage.setItem(dogId + '_fed', Date.now().toString());
 
-    // Обновляем отображение
+    // Обновляем отображение (ТВОЙ КОД)
     updateDog(dogId);
 }
 
-// Проверка, можно ли кормить
+// Проверка, можно ли кормить (ТВОЙ КОД БЕЗ ИЗМЕНЕНИЙ)
 function canFeed(dogId) {
     const lastFed = localStorage.getItem(dogId + '_fed');
     if (!lastFed) return true;
@@ -45,7 +57,7 @@ function canFeed(dogId) {
     return (now - parseInt(lastFed)) > twoHours;
 }
 
-// Сколько времени осталось ждать
+// Сколько времени осталось ждать (ТВОЙ КОД БЕЗ ИЗМЕНЕНИЙ)
 function getTimeLeft(dogId) {
     const lastFed = localStorage.getItem(dogId + '_fed');
     if (!lastFed) return 0;
@@ -57,7 +69,7 @@ function getTimeLeft(dogId) {
     return Math.max(0, timeLeft);
 }
 
-// Форматирование времени
+// Форматирование времени (ТВОЙ КОД БЕЗ ИЗМЕНЕНИЙ)
 function formatTime(ms) {
     if (ms <= 0) return '0m';
 
@@ -68,25 +80,30 @@ function formatTime(ms) {
     return minutes + 'm';
 }
 
-// Обновление отображения собаки
+// Обновление отображения собаки (ТВОЙ КОД БЕЗ ИЗМЕНЕНИЙ)
 function updateDog(dogId) {
+
+
     const canFeedNow = canFeed(dogId);
     const card = document.getElementById(dogId);
 
-    if (!card) return;
+    if (!card) {
+        return;
+    }
 
     // Картинки
     const hungryImg = card.querySelector('.hungry-img');
     const fullImg = card.querySelector('.full-img');
 
+
     if (canFeedNow) {
         // Голодная
-        hungryImg.style.display = 'block';
-        fullImg.style.display = 'none';
+        if (hungryImg) hungryImg.style.display = 'block';
+        if (fullImg) fullImg.style.display = 'none';
     } else {
         // Сытая
-        hungryImg.style.display = 'none';
-        fullImg.style.display = 'block';
+        if (hungryImg) hungryImg.style.display = 'none';
+        if (fullImg) fullImg.style.display = 'block';
     }
 
     // Статус
