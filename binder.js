@@ -14,6 +14,7 @@ function openCardBinderScreen() {
 }
 
 // 2. ИНИЦИАЛИЗАЦИЯ КНИГИ (КЛИКИ И ЛИСТАНИЕ)
+// 2. ИНИЦИАЛИЗАЦИЯ КНИГИ (КЛИКИ И ЛИСТАНИЕ)
 document.addEventListener('DOMContentLoaded', function() {
     const book = document.querySelector('.cardbinder-book');
     if (!book) return;
@@ -22,8 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainCover = document.getElementById('main-cover');
 
     book.addEventListener('click', function(event) {
-        if (event.target.closest('.nav-column')) return;book.addEventListener('click', function(event) {
-        // 1. ПРОВЕРКА: Если кликнули по кнопке или колонке навигации — СТОП
+        // 1. ПРОВЕРКА: Если кликнули по навигации — СТОП (добавил пропущенный ||)
         if (event.target.closest('.nav-column') || event.target.closest('.back-btn')) {
             return;
         }
