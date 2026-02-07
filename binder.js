@@ -53,8 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     mainCover.classList.remove('hidden');
                 }
             }
-        }
-    }); // Здесь всё закрыто правильно
+        } // Здесь всё закрыто правильно
 });
 
 // 3. ЛОГИКА СТРАНИЦ
