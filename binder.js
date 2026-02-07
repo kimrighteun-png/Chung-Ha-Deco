@@ -23,9 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainCover = document.getElementById('main-cover');
 
     book.addEventListener('click', function(event) {
-        // 1. ПРОВЕРКА: Если кликнули по навигации — СТОП (добавил ||)
+        // 1. ПРОВЕРКА: Если кликнули по навигации — СТОП
         if (event.target.closest('.nav-column') || event.target.closest('.back-btn')) {
             return;
+        } // <-- ТУТ БЫЛА ОШИБКА (пропущена скобка)
 
         const rect = book.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
@@ -36,25 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 spread.classList.remove('hidden');
                 mainCover.classList.add('hidden');
                 currentBinderPage = 0;
-                renderBinderPage(0);
+                if (typeof renderBinderPage === 'function') renderBinderPage(0);
             }
         } else {
             if (isRight) {
-                if (checkIfPageFull()) {
+                // Проверяем, существует ли функция, прежде чем вызывать
+                const isFull = typeof checkIfPageFull === 'function' ? checkIfPageFull() : true;
+                if (isFull) {
                     currentBinderPage++;
-                    renderBinderPage(currentBinderPage);
+                    if (typeof renderBinderPage === 'function') renderBinderPage(currentBinderPage);
                 }
             } else {
                 if (currentBinderPage > 0) {
                     currentBinderPage--;
-                    renderBinderPage(currentBinderPage);
+                    if (typeof renderBinderPage === 'function') renderBinderPage(currentBinderPage);
                 } else {
                     spread.classList.add('hidden');
                     mainCover.classList.remove('hidden');
                 }
             }
-        }); // Здесь всё закрыто правильно
+        }
+    }); // <-- ТУТ БЫЛА ОШИБКА (лишняя скобка удалена)
 });
+
 
 // 3. ЛОГИКА СТРАНИЦ
 function checkIfPageFull() {
