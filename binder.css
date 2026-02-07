@@ -17,6 +17,8 @@
     display: none !important;
 }
 
+.hidden { display: none !important; }
+
 
 
 /* Убедись, что родитель тоже центрирует */
