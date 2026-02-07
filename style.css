@@ -1,22 +1,42 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Запрещаем случайный скролл всей страницы */
-}
-
+/* 1. Глобальный фикс для всех экранов */
 .screen {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh; /* Для старых браузеров */
-    height: 100dvh; /* КРИТИЧНО: Dynamic Viewport Height (учитывает адресную строку) */
+    height: 100vh;
+    height: 100dvh; /* Магия для мобилок */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Расталкивает верх и низ по краям */
-    background: #000; /* Или твой цвет фона */
+    align-items: center;
+    justify-content: flex-start; /* Чтобы всё не липло к центру */
+    overflow: hidden; /* Запрещаем дергаться всей странице */
+    background-color: #000; /* Или твой фон */
 }
+
+/* 2. Фикс для книги (Биндера) */
+.cardbinder-book {
+    position: relative;
+    max-width: 95%; /* Чтобы не вжималась в края */
+    max-height: 70vh; /* Ограничиваем высоту, чтобы кнопки внизу не уплывали */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 3. Фикс для кнопок навигации и инвентаря */
+.nav-column {
+    z-index: 100;
+}
+
+#inventory-btn {
+    position: absolute !important;
+    bottom: 20px !important; /* ЖЕСТКО прижимаем к низу экрана */
+    right: 20px !important;
+    z-index: 1000 !important;
+}
+
 
 
 :root {
