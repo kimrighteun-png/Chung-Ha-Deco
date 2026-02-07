@@ -1,19 +1,17 @@
 /* 1. Глобальный фикс для всех экранов */
 /* Применяем ко всем экранам игры */
-/* 1. Общий сброс для всех экранов игры */
 html, body {
-    height: 100dvh !important; /* Динамическая высота для всего документа */
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    height: auto !important; /* Разрешаем телу документа расти вниз */
+    overflow-y: auto !important; /* Включаем вертикальную прокрутку */
+    -webkit-overflow-scrolling: touch; /* Плавность для айфонов */
 }
 
-.screen, section {
-    height: 100% !important; /* Теперь 100% — это реально видимая зона */
-    max-height: 100dvh !important;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
+.screen {
+    min-height: 100vh; /* Экран занимает минимум всю высоту */
+    height: auto !important; /* Но может расти вниз, если контент не влез */
+    position: relative !important; /* Убираем fixed, чтобы можно было листать вниз */
+    display: block !important; /* Упрощаем верстку, чтобы flex не сплющивал всё */
+    overflow-y: visible !important;
 }
 
 
