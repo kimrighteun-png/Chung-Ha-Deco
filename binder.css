@@ -34,8 +34,8 @@
     width: 80%;
     height: 60%;
     position: relative;
-    /* 1. Сдвигаем влево: меняем center на left */
-    transform: scale(min(1, calc(90vw / 900), calc(75vh / 650)));
+    /*/* 1. Сдвигаем влево: меняем center на left */
+    /*transform: scale(min(1, calc(90vw / 900), calc(75vh / 650)));
     /* 2. Точка отсчета — строго ЦЕНТР */
     transform-origin: center center;
 
