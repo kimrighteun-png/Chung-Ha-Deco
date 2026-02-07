@@ -65,8 +65,8 @@
 
 /* 3. ОБЛОЖКА И РАЗВОРОТ */
 #main-cover {
-    width: 85% !important;
-    height: 85% !important;
+    width: 80% !important;
+    height: 80% !important;
     object-fit: contain;
     cursor: pointer;
     display: block;
