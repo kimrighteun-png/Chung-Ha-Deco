@@ -1,3 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Запрещаем случайный скролл всей страницы */
+}
+
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Для старых браузеров */
+    height: 100dvh; /* КРИТИЧНО: Dynamic Viewport Height (учитывает адресную строку) */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Расталкивает верх и низ по краям */
+    background: #000; /* Или твой цвет фона */
+}
+
 
 :root {
     --btn-size: 55px;
