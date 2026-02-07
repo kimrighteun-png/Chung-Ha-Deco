@@ -1,26 +1,23 @@
 /* 1. Глобальный фикс для всех экранов */
-.screen {
-    position: fixed !important;
+/* Применяем ко всем экранам игры */
+.screen, section {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    /* Эти 3 строки — магия: */
+    height: 100vh; /* Запасной вариант */
+    height: 100dvh; /* Dynamic Viewport Height — подстраивается под браузер */
+    position: fixed; /* Фиксируем, чтобы экран не "прыгал" при появлении адресной строки */
+
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
-    height: 100dvh; /* Магия для мобилок */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Чтобы всё не липло к центру */
-    overflow: hidden; /* Запрещаем дергаться всей странице */
-    background-color: #000; /* Или твой фон */
+    overflow: hidden; /* Чтобы сама страница не скроллилась, только инвентарь внутри */
 }
 
 
-#inventory-btn {
-    position: absolute !important;
-    bottom: 20px !important; /* ЖЕСТКО прижимаем к низу экрана */
-    right: 20px !important;
-    z-index: 1000 !important;
-}
+
 
 
 
