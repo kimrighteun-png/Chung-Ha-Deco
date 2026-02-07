@@ -78,7 +78,7 @@
 .cardbinder-layer {
     position: absolute;
     top: 0% !important;
-    left: -23% !important;
+    left: 0% !important;
     width: 100% !important;
     height: 100% !important;
     object-fit: contain;
