@@ -182,3 +182,7 @@
     z-index: 3;
   /*  background: blue !important; /* Сейчас ты ДОЛЖНА увидеть синий прямоугольник */
 }
+
+#cardbinder-spread.hidden {
+    display: none !important;
+}
