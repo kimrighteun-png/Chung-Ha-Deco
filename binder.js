@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // 1. ПРОВЕРКА: Если кликнули по навигации — СТОП (добавил ||)
         if (event.target.closest('.nav-column') || event.target.closest('.back-btn')) {
             return;
-        }
 
         const rect = book.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
