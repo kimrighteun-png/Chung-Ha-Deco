@@ -1,80 +1,94 @@
-/* 1. ЭКРАН БИНДЕРА - Центрируем саму книгу */
+/* 1. Экран биндера - приподнимаем низ через 100dvh, но центрируем контент */
 #cardbinder-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    height: 100dvh;
+    height: 100dvh; /* Подтягиваем низ */
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     z-index: 1000;
-    background: rgba(0,0,0,0.5); /* Чтобы видеть, что экран открылся */
 }
 
-/* Глобальный скрыватель - самый сильный */
-.hidden {
+#cardbinder-screen.hidden {
     display: none !important;
 }
 
-/* 2. КОНТЕЙНЕР КНИГИ - Фиксируем размеры, чтобы JS не мазал мимо центра */
-.cardbinder-book {
-    width: 900px; /* Совет: лучше фикс, чем %, так клики точнее */
-    max-width: 95vw;
-    height: 600px;
-    max-height: 70vh;
-    position: relative;
-    margin: 0 auto;
-    /* Убрал flex, он тут ломал absolute-слои */
-    pointer-events: auto !important;
-    z-index: 10;
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
-/* 3. ОБЛОЖКА */
+
+
+
+/* Убедись, что родитель тоже центрирует */
+#cardbinder-screen {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    /* ... остальные твои стили экрана ... */
+}
+
+
+
+/* 2. КОНТЕЙНЕР КНИГИ - ТОЛЬКО ОДИН БЛОК */
+.cardbinder-book {
+    width: 90%;
+    height: 60%;
+    position: relative;
+    /*/* 1. Сдвигаем влево: меняем center на left */
+    /*transform: scale(min(1, calc(90vw / 900), calc(75vh / 650)));
+    /* 2. Точка отсчета — строго ЦЕНТР */
+    transform-origin: center center;
+
+    /* 3. Центрируем сам контейнер внутри экрана */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Чтобы точно можно было кликать */
+    pointer-events: auto !important;
+    z-index: 10;
+    /* МАГИЯ МАСШТАБА: сжимает всю конструкцию 900x650 под экран телефона,
+       НЕ меняя внутренние координаты и проценты слоев */
+    /*transform: scale(min(1, calc(90vw / 900), calc(70vh / 650)));
+    transform-origin: center center;
+    flex-shrink: 0; /* Чтобы flex не сплющивал книгу */
+}
+
+/* 3. ОБЛОЖКА И РАЗВОРОТ */
 #main-cover {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 80% !important;
     height: 80% !important;
     object-fit: contain;
     cursor: pointer;
-    z-index: 20; /* Обложка выше разворота, пока не скрыта */
+    display: block;
+    z-index: 10;
 }
 
-/* 4. РАЗВОРОТ */
-#cardbinder-spread {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 15;
-    /* Убрал aspect-ratio, если задал высоту книге выше */
-}
 
-/* Принудительное скрытие разворота через ID+Класс (самый высокий приоритет) */
-#cardbinder-spread.hidden {
-    display: none !important;
-}
 
-/* 5. СЛОИ КНИГИ */
+/* 4. ТВОИ СЛОИ - ОСТАВЛЯЕМ КАК ЕСТЬ (-50%, -90%, 200%) */
 .cardbinder-layer {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0% !important;
+    left: 0% !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 90% !important;
     object-fit: contain;
 }
 
 .cardbinder-layer-1 { z-index: 1; opacity: 1.0; }
 .cardbinder-layer-2 { z-index: 2; opacity: 0.4; }
 
-/* 6. СЕТКА КАРТ */
+/* 5. СЕТКА КАРТ - ТВОЯ РАЗМЕТКА */
 .cardbinder-layer-3 {
     position: absolute !important;
     top: 18% !important;
@@ -82,52 +96,93 @@
     width: 60% !important;
     height: 60% !important;
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    grid-template-rows: 1fr 1fr !important;
+
+    /* ЖЕСТКО: 50% на 50%, чтобы сетка не "дышала" */
+    grid-template-columns: 50% 50% !important;
+    grid-template-rows: 50% 50% !important;
+
     gap: 0 !important;
-    z-index: 30; /* Сетка поверх бумаги */
+    z-index: 3 !important;
     pointer-events: auto !important;
 }
 
-.cards-slot {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Твои отступы для слотов */
+/* Настройки слотов из твоего кода */
 .cards-slot:nth-child(3),
-.cards-slot:nth-child(4) { margin-top: 5% !important; }
+.cards-slot:nth-child(4) { margin-top: 10% !important; }
 
 .cards-slot:nth-child(1),
-.cards-slot:nth-child(3) { margin-left: 5% !important; } /* Снизил с 40%, чтобы не улетало */
+.cards-slot:nth-child(3) { margin-left: 40% !important; }
 
-/* КАРТОЧКИ */
+.cards-slot {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border: none !important;
+}
+
+/* КАРТОЧКИ В БИНДЕРЕ */
 .binder-card {
-    width: 90%;
-    height: 90%;
-    display: flex;
-    justify-content: center;
+    width: 90% !important;
+    height: 90% !important;
 }
 
 .binder-card img {
-    width: 80% !important; /* Было 50% - мелковато */
+    width: 50% !important;
     height: auto !important;
-    object-fit: contain;
-    border-radius: 8%;
+    object-fit: contain !important;
+    border-radius: 12% !important;
+    pointer-events: none;
 }
 
-/* Блик и Корешок */
-.cardbinder-layer-4 { z-index: 40; opacity: 0.2; pointer-events: none; }
+/* Остальные слои и корешок */
+.cardbinder-layer-4 { z-index: 4; opacity: 0.2; pointer-events: none; }
+
 
 #cardbinder-spine {
+    position: absolute !important; /* Вырываем из всех контейнеров */
+    display: block !important;
+
+    /* ПОДСТАВЬ СВОИ ЦИФРЫ СЮДА */
+    width: 60% !important;
+    height: 60% !important;
+    left: 2% !important;
+    top: 27% !important;
+
+    z-index: 7 !important; /* Поверх всего на свете */
+    cursor: pointer !important;
+    transform: none !important; /* Убираем любые смещения от других скриптов */
+}
+
+#cardbinder-spine img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    object-fit: contain !important;
+}
+
+
+
+
+
+#cardbinder-spread {
     position: absolute;
-    width: 10%;
-    height: 80%;
-    left: 45%;
-    top: 10%;
-    z-index: 50;
-    pointer-events: none;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+
+    /* ВМЕСТО ПРОСТО 100% СТАВИМ МИНИМУМ */
+    height: 100% !important;
+    min-height: 400px !important; /* Укажи примерно высоту своей книги в пикселях */
+
+    /* Или можно использовать пропорцию, если книга всегда прямоугольная */
+    aspect-ratio: 3 / 2;
+
+    z-index: 3;
+  /*  background: blue !important; /* Сейчас ты ДОЛЖНА увидеть синий прямоугольник */
+}
+
+#cardbinder-spread.hidden {
+    display: none !important;
 }
