@@ -180,5 +180,5 @@
     aspect-ratio: 3 / 2;
 
     z-index: 3;
-    background: blue !important; /* Сейчас ты ДОЛЖНА увидеть синий прямоугольник */
+  /*  background: blue !important; /* Сейчас ты ДОЛЖНА увидеть синий прямоугольник */
 }
