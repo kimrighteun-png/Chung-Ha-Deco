@@ -38,8 +38,8 @@
 
 /* 2. КОНТЕЙНЕР КНИГИ - ТОЛЬКО ОДИН БЛОК */
 .cardbinder-book {
-    width: 90%;
-    height: 60%;
+    width: 100%;
+    height: 70%;
     position: relative;
     /*/* 1. Сдвигаем влево: меняем center на left */
     /*transform: scale(min(1, calc(90vw / 900), calc(75vh / 650)));
