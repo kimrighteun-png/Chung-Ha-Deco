@@ -2,8 +2,9 @@ const binderAlbums = [
     "HandsOnMe", // Страница 1
     "Offset",
     "BloomingBlue",
-    "Flourishing",
     "gottago",  // Страница 3
+    "Flourishing",
+
     "algorithm"
     // ... и так далее до 13
 ];
