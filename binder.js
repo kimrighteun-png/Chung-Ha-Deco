@@ -22,7 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainCover = document.getElementById('main-cover');
 
     book.addEventListener('click', function(event) {
-        if (event.target.closest('.nav-column')) return;
+        if (event.target.closest('.nav-column')) return;book.addEventListener('click', function(event) {
+        // 1. ПРОВЕРКА: Если кликнули по кнопке или колонке навигации — СТОП
+        if (event.target.closest('.nav-column') || event.target.closest('.back-btn')) {
+            return;
+        }
 
         const rect = book.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
