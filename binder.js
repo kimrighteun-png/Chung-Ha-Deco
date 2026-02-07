@@ -5,13 +5,22 @@ let currentBinderPage = 0;
 window.binderData = JSON.parse(localStorage.getItem('chungha_binder_data')) || {};
 
 // 1. ОТКРЫТЬ ЭКРАН БИНДЕРА
-function openCardBinderScreen() {
-    document.querySelectorAll('.screen').forEach(screen => screen.classList.add('hidden'));
+// Принудительный экспорт функции в глобальную область
+window.openCardBinderScreen = function() {
+    console.log("Попытка открыть биндер...");
+    const screens = document.querySelectorAll('.screen');
+    if (screens) screens.forEach(s => s.classList.add('hidden'));
+
     const screen = document.getElementById('cardbinder-screen');
-    screen.classList.remove('hidden');
-    document.getElementById('cardbinder-spread').classList.add('hidden');
-    document.getElementById('main-cover').classList.remove('hidden');
-}
+    const spread = document.getElementById('cardbinder-spread');
+    const cover = document.getElementById('main-cover');
+
+    if (screen) screen.classList.remove('hidden');
+    if (spread) spread.classList.add('hidden');
+    if (cover) cover.classList.remove('hidden');
+    console.log("Биндер открыт успешно");
+};
+
 
 // 2. ИНИЦИАЛИЗАЦИЯ КНИГИ (КЛИКИ И ЛИСТАНИЕ)
 document.addEventListener('DOMContentLoaded', function() {
