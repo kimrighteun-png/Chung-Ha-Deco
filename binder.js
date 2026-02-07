@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         } // Здесь всё закрыто правильно
-});
+};
 
 // 3. ЛОГИКА СТРАНИЦ
 function checkIfPageFull() {
