@@ -171,9 +171,18 @@
 
 
 #cardbinder-spread {
-    background: blue !important; /* Синий фон, чтобы точно увидеть */
-    min-height: 300px !important;
-    min-width: 300px !important;
-    border: 5px solid white !important;
-    display: block !important; /* Принудительно показываем */
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+
+    /* ВМЕСТО ПРОСТО 100% СТАВИМ МИНИМУМ */
+    height: 100% !important;
+    min-height: 400px !important; /* Укажи примерно высоту своей книги в пикселях */
+
+    /* Или можно использовать пропорцию, если книга всегда прямоугольная */
+    aspect-ratio: 3 / 2;
+
+    z-index: 3;
+    background: blue !important; /* Сейчас ты ДОЛЖНА увидеть синий прямоугольник */
 }
