@@ -14,7 +14,6 @@ function openCardBinderScreen() {
 }
 
 // 2. ИНИЦИАЛИЗАЦИЯ КНИГИ (КЛИКИ И ЛИСТАНИЕ)
-// 2. ИНИЦИАЛИЗАЦИЯ КНИГИ (КЛИКИ И ЛИСТАНИЕ)
 document.addEventListener('DOMContentLoaded', function() {
     const book = document.querySelector('.cardbinder-book');
     if (!book) return;
@@ -55,10 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-    }); // Закрытие addEventListener
-}); // Закрытие DOMContentLoaded
-
-
+    });
+});
 
 // 3. ЛОГИКА СТРАНИЦ
 function checkIfPageFull() {
@@ -85,32 +82,33 @@ function renderBinderPage(pageIndex) {
             if (card) createBinderCardElement(card, slot);
         }
     }
-    initBinderDragAndDrop();
+    // Проверь, что эта функция (initBinderDragAndDrop) создана ниже в файле
+    if (typeof initBinderDragAndDrop === 'function') {
+        initBinderDragAndDrop();
+    }
 }
 
 // 4. ПЕРЕМЕЩЕНИЕ КАРТ (ИНВЕНТАРЬ <-> БИНДЕР)
 function moveCardToBinder(cardId, slot) {
     const sId = String(cardId);
 
-    // 1. Убираем из массива в памяти
     let inv = JSON.parse(localStorage.getItem('chungha_inventory')) || [];
     inv = inv.filter(id => String(id) !== sId);
     localStorage.setItem('chungha_inventory', JSON.stringify(inv));
 
-    // 2. Обновляем глобальную переменную, чтобы inventory.js её увидел
     if (window.playerInventory) window.playerInventory = inv;
 
-    // 3. Создаем в биндере
     const card = window.allCards.find(c => String(c.id) === sId);
     if (card) createBinderCardElement(card, slot);
 
-    // 4. Запоминаем в биндере
     window.binderData["slot-" + slot.dataset.slot] = sId;
     localStorage.setItem('chungha_binder_data', JSON.stringify(window.binderData));
 
-    // 5. ГЛАВНОЕ: перерисовываем инвентарь
-    updateInventory();
+    if (typeof updateInventory === 'function') {
+        updateInventory();
+    }
 }
+
 
 
 
