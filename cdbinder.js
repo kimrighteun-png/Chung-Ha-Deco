@@ -48,13 +48,15 @@ function updateBinderView() {
 
 function renderDisks() {
     const content = document.getElementById('binder-content');
-    if (!content) return;
-
-    // Вычисляем индекс альбома (страница 1 — это индекс 0 в массиве)
     const albumKey = binderAlbums[currentPage - 1];
-    const albumData = library[albumKey];
 
-    if (!albumData) return;
+    // Ищем данные, игнорируя регистр ключа
+    const albumData = library[albumKey] || library[albumKey.toLowerCase()] || library[albumKey.charAt(0).toUpperCase() + albumKey.slice(1)];
+
+    if (!albumData) {
+        console.error("Альбом не найден в базе:", albumKey);
+        return;
+    }
 
     content.innerHTML = `
     <div class="page-spread">
