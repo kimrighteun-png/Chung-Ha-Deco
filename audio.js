@@ -82,54 +82,29 @@ function updateTrack(keepTime = false) {
     const subFolder = isInstrumental ? "Instrumental/" : "Original/";
     const trackName = album.tracks[currentTrackIndex];
     const savedTime = keepTime ? audioPlayer.currentTime : 0;
-
-    // Улучшаем загрузку: 'auto' вместо 'none'
-    audioPlayer.preload = 'auto';
-    audioPlayer.src = album.folder + subFolder + trackName;
-
-    // Сбрасываем и загружаем заново
-    audioPlayer.load();
-
-    audioPlayer.oncanplay = () => { // Используем oncanplay, оно быстрее
-        audioPlayer.currentTime = savedTime;
-
-        const visualDisk = document.getElementById('player-disk-visual');
-
-        if (isPlaying) {
-            // Принудительный старт
-            audioPlayer.play().catch(e => console.log("Ошибка авто-старта:", e));
-            if (visualDisk) visualDisk.classList.add('spinning');
-        } else {
-            if (visualDisk) visualDisk.classList.remove('spinning');
-        }
-    };
-}function updateTrack(keepTime = false) {
-    if (!currentAlbumKey) return;
-
-    const album = library[currentAlbumKey];
-    const subFolder = isInstrumental ? "Instrumental/" : "Original/";
-    const trackName = album.tracks[currentTrackIndex];
-    const savedTime = keepTime ? audioPlayer.currentTime : 0;
-
-    // СТРОИМ ПУТЬ (проверь, чтобы тут не было лишних/недостающих слешей)
     const fullPath = album.folder + subFolder + trackName;
-    console.log("Загружаю трек:", fullPath); // ОТЛАДКА: посмотри в консоль, правильный ли путь
 
+    // 1. Сначала СБРАСЫВАЕМ старый трек полностью
+    audioPlayer.pause();
     audioPlayer.src = fullPath;
+
+    // 2. Ставим ПРИНУДИТЕЛЬНУЮ загрузку только этого файла
+    audioPlayer.preload = "auto";
     audioPlayer.load();
 
-    // Запускаем сразу, не дожидаясь события загрузки (браузер сам подтянет данные)
+    // 3. Используем Promise для запуска (это лечит 99% багов хрома)
     if (isPlaying) {
         audioPlayer.play().then(() => {
             audioPlayer.currentTime = savedTime;
-            const visualDisk = document.getElementById('player-disk-visual');
-            if (visualDisk) visualDisk.classList.add('spinning');
         }).catch(e => {
-            console.log("Автостарт заблокирован браузером. Нужно нажать Play руками.", e);
-            isPlaying = false;
+            // Если Гитхаб тормозит, ждем события 'canplay'
+            audioPlayer.once('canplay', () => {
+                if (isPlaying) audioPlayer.play();
+            });
         });
     }
 }
+
 
 
 
