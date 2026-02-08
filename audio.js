@@ -75,6 +75,7 @@ audioPlayer.onended = () => {
 };
 
 // ОСНОВНАЯ ЛОГИКА
+// ОСНОВНАЯ ЛОГИКА - ОБНОВЛЕННАЯ
 function updateTrack(keepTime = false) {
     if (!currentAlbumKey) return;
 
@@ -84,26 +85,37 @@ function updateTrack(keepTime = false) {
     const savedTime = keepTime ? audioPlayer.currentTime : 0;
     const fullPath = album.folder + subFolder + trackName;
 
-    // 1. Сначала СБРАСЫВАЕМ старый трек полностью
-    audioPlayer.pause();
+    // 1. Снимаем все старые обработчики, чтобы они не копились
+    audioPlayer.oncanplay = null;
+
+    // 2. Устанавливаем путь.
+    // На GitHub лучше НЕ использовать load(), если сразу идет play()
     audioPlayer.src = fullPath;
 
-    // 2. Ставим ПРИНУДИТЕЛЬНУЮ загрузку только этого файла
-    audioPlayer.preload = "auto";
-    audioPlayer.load();
-
-    // 3. Используем Promise для запуска (это лечит 99% багов хрома)
     if (isPlaying) {
+        // 3. Используем упрощенный запуск.
+        // Браузер сам поймет, что нужно качать файл, как только увидит play()
         audioPlayer.play().then(() => {
             audioPlayer.currentTime = savedTime;
+
+            const visualDisk = document.getElementById('player-disk-visual');
+            if (visualDisk) visualDisk.classList.add('spinning');
         }).catch(e => {
-            // Если Гитхаб тормозит, ждем события 'canplay'
-            audioPlayer.once('canplay', () => {
-                if (isPlaying) audioPlayer.play();
-            });
+            console.log("Ожидание буферизации...");
+
+            // Если сеть медленная, запускаем как только появится первый кусочек данных
+            audioPlayer.oncanplay = () => {
+                if (isPlaying) {
+                    audioPlayer.play();
+                    audioPlayer.currentTime = savedTime;
+                    const visualDisk = document.getElementById('player-disk-visual');
+                    if (visualDisk) visualDisk.classList.add('spinning');
+                }
+            };
         });
     }
 }
+
 
 
 

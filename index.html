@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <head>
+
+  <script>
+  // Глобальный перехватчик: ставит Lazy Loading всем картинкам ПЕРЕД загрузкой
+  (function() {
+      const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+              mutation.addedNodes.forEach((node) => {
+                  if (node.tagName === 'IMG' && !node.getAttribute('loading')) {
+                      node.setAttribute('loading', 'lazy');
+                  }
+                  if (node.querySelectorAll) {
+                      node.querySelectorAll('img:not([loading])').forEach(img => {
+                          img.setAttribute('loading', 'lazy');
+                      });
+                  }
+              });
+          });
+      });
+
+      observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true
+      });
+  })();
+  </script>
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Chungha Deco</title>
@@ -247,13 +275,5 @@
 <script src="decoration.js"></script>
 
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Находим все картинки, у которых нет loading, и делаем их ленивыми
-    document.querySelectorAll('img:not([loading])').forEach(img => {
-        img.setAttribute('loading', 'lazy');
-    });
-});
-</script>
 </body>
 </html>
