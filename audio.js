@@ -24,7 +24,7 @@ const library = {
             "gottago.ogg"
         ]
       },
-      "Offset": {
+      "offset": {
           title: "Offset",
           folder: "Music/Offset/",
           tracks: [
@@ -35,7 +35,7 @@ const library = {
               "5remindofyou.ogg"
           ]
         },
-          "BloomingBlue": {
+          "bloomingblue": {
               title: "Blooming Blue",
               folder: "Music/BloomingBlue/",
               tracks: [
