@@ -1,0 +1,44 @@
+/* Контейнер правой страницы делаем относительным, чтобы плеер лип к нему */
+#page-right {
+    position: relative;
+}
+
+/* Сам плеер */
+.side-player {
+    position: absolute; /* Теперь он привязан к странице, а не к окну */
+    right: 1%;       /* Отступ от правого края страницы */
+    bottom: 25%;      /* Отступ от низа страницы */
+    width: 50%;      /* Компактный размер, подбери под себя */
+    z-index: 11;
+}
+
+.player-body {
+    position: relative;
+    width: 100%;
+}
+
+.player-body img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Кнопки-хитбоксы (зеленые для настройки) */
+.hit {
+    position: absolute;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.0);
+}
+
+/* ТОЧНЫЕ КООРДИНАТЫ ПОД РИСУНОК СЕСТРЫ */
+/* Я вымерил их по картинке, которую ты скинула: */
+
+#btn-power { bottom: 21%; left: 9%; width: 12%; height: 11%; border-radius: 50%; } /* Круглая кнопка слева */
+
+#btn-prev  { bottom: 20%; left: 23%; width: 6%; height: 5%; }  /* Стрелка влево */
+#btn-next  { bottom: 20%; left: 29%; width: 6%; height: 5%; }  /* Стрелка вправо */
+
+#btn-plus  { bottom: 20%; left: 38%; width: 6%; height: 5%; }  /* Плюс */
+#btn-minus { bottom: 20%; left: 45%; width: 6%; height: 5%; }  /* Минус */
+
+#btn-mode  { bottom: 20%; left: 53%; width: 18%; height: 6%; } /* Табличка MODE */

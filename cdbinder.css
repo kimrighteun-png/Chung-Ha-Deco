@@ -1,0 +1,160 @@
+/* 1. КОРЕШОК (на полке) */
+#binder-spine {
+    position: absolute;
+    bottom: 25%;
+    right: 11%;
+    width: 55%;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 10;
+}
+
+#binder-spine:hover { transform: scale(1.05); }
+
+#binder-spine img { width: 100%; height: auto; }
+
+/* 2. ОВЕРЛЕЙ */
+#binder-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+/* 3. КОНТЕЙНЕР КНИГИ (Твои 900x650) */
+.binder-container, .binder-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#binder-book {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 4. РАЗВОРОТ И СЛОИ — ОБНУЛЯЕМ ТОЧКУ СТАРТА */
+.layer-bottom, .layer-top {
+    position: absolute;
+    top: 2.5% !important;    /* ВСЕМ ставим ноль! */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* Чтобы картинки не искажались */
+}
+
+.layer-bottom { z-index: 1; }
+.layer-top {
+    z-index: 100;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* 5. ДИСК — ТЕПЕРЬ ОН ВСЕГДА В КАРМАШКЕ */
+.cd-disk {
+    position: absolute !important;
+    /* Размер диска — примерно четверть ширины разворота */
+    width: 70% !important;
+    height: auto !important;
+
+    /* Точная посадка в "кармашек" (настраивается под твою картинку) */
+    top: 36.8% !important;
+    left: 18% !important;
+
+    z-index: 50; /* Между фоном и верхним слоем */
+    transition: transform 0.3s ease; /* Чтобы диск плавно "залетал" */
+}
+
+/* Эффект при наведении на диск */
+.cd-disk:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+/* 6. НАВИГАЦИЯ */
+.page-nav {
+    position: absolute;
+    top: 30%; width: 100px; height: 50%;
+    cursor: pointer;
+    z-index: 200;
+}
+.page-nav.prev { left: 0; }
+.page-nav.next { right: 0; }
+
+.hidden { display: none !important; }
+
+
+
+/* 1. Убеждаемся, что обертка кнопки внутри контейнера */
+.binder-controls {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0; /* Создает уютный отступ от книги */
+    width: 100%;
+    margin-top: 10px; /* Чтобы не липла к краю страницы */
+}
+
+.use-btn {
+    position: relative !important; /* УБИРАЕМ fixed */
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    /* Твои красивые стили */
+    padding: 10px 20px;
+    background: white;
+    border: 2px solid black;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#player-disk-visual {
+    position: absolute;
+    /* Центрируем диск внутри плеера */
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 60%; /* Размер диска в плеере */
+    z-index: 2;   /* Должен быть выше корпуса, но ниже кнопок-хитов */
+    pointer-events: none; /* Чтобы диск не мешал кликать по кнопкам */
+    border-radius: 50%;
+}
+
+/* Добавь это, если хочешь, чтобы диск крутился при игре */
+.spinning {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+
+
+
+
+
+.fixed-button {
+    position: fixed !important;
+    bottom: 10% !important; /* Всегда 20px от нижнего КРАЯ ЭКРАНА */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 999999 !important; /* Выше вообще всего на свете */
+    display: block !important;
+    background: white !important;
+    color: black !important;
+    padding: 15px 30px !important;
+    border: 3px solid black !important;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5) !important;
+}

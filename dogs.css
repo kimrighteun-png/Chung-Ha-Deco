@@ -1,0 +1,156 @@
+/* Общие стили для обеих кнопок */
+.dogs-roomb, .dogs-gameb {
+  position: absolute;
+  width: 30%;
+  height: 10%;
+  top: 17%; /* Одинаковая высота для обеих */
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Позиция ПЕРВОЙ кнопки (слева) */
+.dogs-roomb {
+  left: 15%;
+}
+
+/* Позиция ВТОРОЙ кнопки (справа) */
+.dogs-gameb {
+  left: 55%;
+}
+
+#game-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 20px;
+    background: rgba(0,0,0,0.3); /* Немного притеним фон при выборе */
+}
+
+#game-selection img {
+    width: 120px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+#game-selection img:hover { transform: scale(1.1); }
+
+/* Игровое поле */
+#game-play-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+/* Собака (Игрок) */
+#catcher-dog {
+    position: absolute;
+    bottom: 5%; /* Чуть приподнял от самого края */
+    left: 0%;
+    width: 50%; /* Размер собаки */
+    height: auto;
+    transform: translateX(-50%);
+    z-index: 50;
+    pointer-events: none;
+}
+
+/* ПАДАЮЩАЯ КОСТЬ (Уменьшили в 20 раз через CSS) */
+.falling-bone {
+    position: absolute;
+    width: 17% !important; /* ВОТ ТУТ РАЗМЕР КОСТОЧКИ */
+    height: auto !important;
+    z-index: 40;
+    pointer-events: none;
+    /* Убираем фон и прочее, если остались от тестов */
+    background: none !important;
+}
+
+/* Счетчик молний (энергии) */
+#game-lives {
+    position: absolute;
+    top: 10%;
+    left: 2%;
+    font-size: 32px;
+    color: #ffeb3b; /* Ярко-желтый */
+    z-index: 100;
+}
+
+
+
+
+
+
+.dog-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%); /* ТОЧНОЕ ЦЕНТРИРОВАНИЕ */
+    gap: -5%;
+    width: 110%;
+}
+
+.dog-card {
+    text-align: center;
+    width: 120%;
+}
+
+.dog-image {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dog-image img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.dog-status {
+    margin: 1% 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.dog-timer {
+    margin: 1% 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.feed-btn {
+    padding: 1% 8%;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 5%;
+    width: 40%;
+}
+
+.feed-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Разные размеры карточек */
+#aranroom1 {
+    transform: scale(0.8);
+    margin-top: 10%;
+}
+
+#bambiroom1 {
+    transform: scale(1.1);
+}

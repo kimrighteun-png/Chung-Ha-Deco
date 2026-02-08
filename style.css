@@ -1,0 +1,201 @@
+/* 1. Глобальный фикс для всех экранов */
+/* Применяем ко всем экранам игры */
+html, body {
+    height: auto !important; /* Разрешаем телу документа расти вниз */
+    overflow-y: auto !important; /* Включаем вертикальную прокрутку */
+    -webkit-overflow-scrolling: touch; /* Плавность для айфонов */
+}
+
+.screen {
+    min-height: 100vh; /* Экран занимает минимум всю высоту */
+    height: auto !important; /* Но может расти вниз, если контент не влез */
+    position: relative !important; /* Убираем fixed, чтобы можно было листать вниз */
+    display: block !important; /* Упрощаем верстку, чтобы flex не сплющивал всё */
+    overflow-y: visible !important;
+}
+
+
+
+
+
+:root {
+    --btn-size: 55px;
+}
+
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    font-family: sans-serif;
+    overflow: hidden;
+    background: #000;
+}
+
+.screen {
+    display: none;
+    width: 100vw; height: 100vh;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+.active { display: block; }
+
+.work-page {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    position: relative;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+/* ФОНЫ — я прописал твои пути из скришотов */
+#main-menu {
+    background-image: url('visual/backgrounds/startpagebackground.webp');
+}
+#page-left {
+    background-image: url('visual/backgrounds/basebackground.webp');
+}
+
+#page-right {
+    background-image: url('visual/backgrounds/basebackground.webp');
+}
+
+#shop { background-image: url('visual/backgrounds/shopbackground.webp'); }
+#dogs-room { background-image: url('visual/backgrounds/dogsmenubackground.webp'); }
+#social-feed { background-color: #ede7f6; }
+#profile-screen { background-color: #ffffff; }
+#dogsroom1 {background-image: url('visual/backgrounds/dogsroombackground.webp');}
+#doggame {background-image: url('visual/backgrounds/dogsroombackground.webp');}
+#cardbinder-screen {background-image: url("visual/backgrounds/table.webp");}
+#decoration-screen {background-image: url("visual/backgrounds/table.webp");}
+
+/* ИНТЕРФЕЙС */
+.nav-column {
+    position: absolute;
+    top: 20px; right: 15px;
+    display: flex; flex-direction: column;
+    gap: 12px;
+    z-index: 100 !important; /* Больше, чем у экрана */
+    pointer-events: auto !important;
+}
+
+.profile-btn {
+    width: var(--btn-size); height: var(--btn-size);
+    background: #333; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; cursor: pointer; border: 2px solid #000;
+}
+
+.square-btn {
+    width: var(--btn-size); height: var(--btn-size);
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #333; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: bold; cursor: pointer;
+}
+
+#heart-display {
+    position: absolute; bottom: 30px; left: 20px;
+    background: white; padding: 8px 18px; border-radius: 25px;
+    border: 2px solid #ff4081; font-weight: bold;
+    z-index: 100; opacity: 0; transition: 0.5s;
+}
+
+.centered-content { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.main-title { color: white; text-shadow: 2px 2px 4px #000; font-size: 32px; margin-bottom: 20px; text-align: center;}
+.start-btn { width: 180px; height: 60px; font-size: 20px; cursor: pointer; border-radius: 10px; border: 3px solid #333; }
+.screen-title { position: absolute; top: 25px; left: 20px; font-weight: bold; color: #333; }
+.profile-card { background: white; padding: 30px; border-radius: 20px; border: 3px solid #333; text-align: center; }
+.profile-avatar { font-size: 60px; margin-bottom: 10px; }
+.badges-info { font-size: 12px; color: #666; }
+
+
+/* --- ЭКРАН ЗАГРУЗКИ (Твой код) --- */
+#loading-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+    background-image: url('visual/backgrounds/startpagebackground.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Эта строчка обязательна, чтобы экран исчезал */
+.hidden { display: none !important; }
+
+/* Твои анимации лапки */
+@keyframes pawSqueeze {
+    0% { content: url('visual/loadingpaw/loadingpow1.webp'); }
+    20% { content: url('visual/loadingpaw/loadingpow2.webp'); }
+    40% { content: url('visual/loadingpaw/loadindpow3.webp'); }
+    60% { content: url('visual/loadingpaw/loadingpow4.webp'); }
+    80% { content: url('visual/loadingpaw/loadingpow5.webp'); }
+    100% { content: url('visual/loadingpaw/loadingpow1.webp'); }
+}
+
+#main-paw {
+    width: 200px;
+    height: auto;
+    animation: pawSqueeze 0.5s steps(1) infinite;
+}
+
+/* Твои анимации Арана */
+#main-aran {
+    width: 80px !important;
+    position: absolute !important;
+    bottom: 30px !important;
+    animation: aranLegs 0.6s steps(1) infinite, aranMove 2.5s linear infinite !important;
+}
+
+@keyframes aranMove {
+    0% { left: 100%; }
+    100% { left: -120px; }
+}
+
+@keyframes aranLegs {
+    0% { content: url('visual/loadingaran/loadingaran1.webp'); }
+    25% { content: url('visual/loadingaran/loadingaran2.webp'); }
+    50% { content: url('visual/loadingaran/loadingaran3.webp'); }
+    75% { content: url('visual/loadingaran/loadingaran4.webp'); }
+    100% { content: url('visual/loadingaran/loadingaran1.webp'); }
+}
+
+/* Твои анимации Бэмби */
+#main-bembi {
+    width: 120px !important;
+    position: absolute !important;
+    bottom: 25px !important;
+    left: 100%;
+    animation: bembiLegs 0.6s steps(1) infinite, bembiMove 2.5s linear infinite !important;
+}
+
+@keyframes bembiMove {
+    0% { left: 140%; }
+    100% { left: -250px; }
+}
+
+@keyframes bembiLegs {
+    0% { content: url('visual/loadingbembi/loadingbambi1.webp'); }
+    25% { content: url('visual/loadingbembi/loadingbembi2.webp'); }
+    50% { content: url('visual/loadingbembi/loadingbembi3.webp'); }
+    75% { content: url('visual/loadingbembi/loadingbembi4.webp'); }
+    100% { content: url('visual/loadingbembi/loadingbambi1.webp'); }
+}
+
+
+
+#heart-display {
+    position: absolute; bottom: 92%; left: 5%;
+    background: white;
+    padding: 2% 5%;
+    border-radius: 25px;
+    border: 2px solid #ff4081; font-weight: bold;
+    z-index: 100; opacity: 0; transition: 0.5s;
