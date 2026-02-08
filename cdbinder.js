@@ -4,7 +4,14 @@ const binderAlbums = [
     "BloomingBlue",
     "gottago",  // Страница 3
     "Flourishing",
-    "algorithm"
+    "Querencia",
+    "KillingMe",
+    "Barerare",
+    "eeniemeenie",
+    "algorithm",
+    "ChristmasPromise",
+    "Alivio",
+    "ChristmasPromiseAgain"
     // ... и так далее до 13
 ];
 

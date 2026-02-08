@@ -56,8 +56,96 @@ const library = {
                       "4flourishing.ogg",
                       "5snapping.ogg"
                     ]
-                  }
-}
+                  },
+              "Querencia": {
+                    title: "Querencia",
+                    folder: "Music/Querencia/",
+                    tracks: [
+                      "1sidea.ogg",
+                      "2bicycle.ogg",
+                      "3masquarade.ogg",
+                      "4flyingonfaith.ogg",
+                      "5lucesicutstellae.ogg",
+                      "6sideb.ogg",
+                      "7staytonight.ogg",
+                      "8dreamofyou.ogg",
+                      "9botherme.ogg",
+                      "10chill.ogg",
+                      "11sidec.ogg",
+                      "12play.ogg",
+                      "13demente.ogg",
+                      "14lemon.ogg",
+                      "15byulhatang.pgg",
+                      "16sided.ogg",
+                      "17x.ogg",
+                      "18allnightlong.ogg",
+                      "19everybodyhas.ogg",
+                      "20comengoes.ogg",
+                      "21querencia.ogg"
+                    ]
+                    },
+                "Alivio": {
+                  title: "Alivio",
+                  folder: "Music/Alivio/",
+                  tracks: [
+                    "1creepin.ogg",
+                    "2salty.ogg",
+                    "3loyal.ogg",
+                    "4stress.ogg",
+                    "5beatofmyheart.ogg",
+                    "6evensteven.ogg",
+                    "7thanksforthememories.ogg",
+                    "8stillarose.ogg"
+                  ]
+                  },
+                "Barerare": {
+                  title: "Barerare",
+                  folder: "Music/Barerare/",
+                  tracks: [
+                    "1xxxx.ogg",
+                    "2sparkling.ogg",
+                    "3louder.ogg",
+                    "4crazylikeyou.ogg",
+                    "5californiadream.ogg",
+                    "6goodnightmuprincess.ogg",
+                    "7lovemeoutloud.ogg",
+                    "8nuhuh.ogg"
+                  ]
+                  },
+                  "ChristmasPromise": {
+                   title: "ChristmasPromise",
+                   folder: "Music/ChristmasPromise/",
+                   tracks: [
+                     "1sleigh.ogg",
+                     "2theregoessantaclaus.ogg"
+                   ]
+                   },
+                   "ChristmasPromiseAgain": {
+                    title: "ChristmasPromiseAgain",
+                    folder: "Music/ChristmasPromiseAgain/",
+                    tracks: [
+                      "1christmasagain.ogg",
+                      "2itsthattimeofyear.ogg",
+                      "3sleigh.ogg",
+                      "4theregoessantaclaus.ogg"
+                    ]
+                    },
+                    "eeniemeenie": {
+                     title: "eeniemeenie",
+                     folder: "Music/eeniemeenie/",
+                     tracks: [
+                       "1eeniemeenie.ogg",
+                       "2imready.ogg"
+                     ]
+                   },
+                   "KillingMe": {
+                    title: "KillingMe",
+                    folder: "Music/KillingMe/",
+                    tracks: [
+                      "killingme.ogg"
+                    ]
+                    }
+                }
 
 let currentAlbumKey = null;
 let currentTrackIndex = 0;

@@ -205,14 +205,23 @@
 
 .sticker-list-container {
     display: flex;
+    flex-wrap: nowrap !important; /* ЗАПРЕЩАЕМ перенос на вторую строку */
+    overflow-x: scroll !important; /* Принудительно ПОКАЗЫВАЕМ скролл */
+    width: 100%;                  /* Ограничиваем ширину контейнера */
+    max-width: 90vw;              /* Чтобы он точно был уже, чем контент */
     gap: 10px;
-    overflow-x: auto; /* Горизонтальный скролл */
     padding: 10px;
-    margin-top: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    min-height: 80px;
+
+    /* Убедись, что тут НЕТ display: block в другом месте */
 }
+
+.sticker-preview-icon {
+    width: 60px !important;
+    height: 60px !important;
+    flex-shrink: 0 !important;   /* Это оставляем, оно критично */
+    display: inline-block;
+}
+
 
 .sticker-preview-icon {
     width: 60px;

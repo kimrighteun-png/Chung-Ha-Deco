@@ -1,9 +1,15 @@
 // decoration.js
 const stickerData = {
-    pink: ["ps1.webp", "ps2.webp", "ps3.webp"],
-    blue: ["lbs1.webp", "lbs2.webp", "lbs3.webp"],
-    black: ["bs1.webp", "bs2.webp", "bs3.webp"]
+    pink: Array.from({length: 34}, (_, i) => `ps${i+1}.webp`), // если имена ps1, ps2...
+    blue: Array.from({length: 33}, (_, i) => `lbs${i+1}.webp`),
+    black: Array.from({length: 17}, (_, i) => `bs${i+1}.png`),
+    yellow: Array.from({length: 33}, (_, i) => `ys${i+1}.webp`), // если имена ps1, ps2...
+    green: Array.from({length: 24}, (_, i) => `gs${i+1}.webp`),
+    purple: Array.from({length: 17}, (_, i) => `pp${i+1}.png`),
+    white: Array.from({length: 16}, (_, i) => `W${i+1}.png`),
+
 };
+
 
 
 
