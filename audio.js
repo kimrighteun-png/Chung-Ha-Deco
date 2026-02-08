@@ -67,7 +67,7 @@ let isPlaying = false;
 // ИНИЦИАЛИЗАЦИЯ ПЛЕЕРА
 const audioPlayer = new Audio();
 audioPlayer.volume = 0.5;
-audioPlayer.preload = 'none';
+audioPlayer.preload = 'metadata';
 
 // АВТОМАТИКА: Когда песня заканчивается, сама вызывается следующая
 audioPlayer.onended = () => {
@@ -83,25 +83,55 @@ function updateTrack(keepTime = false) {
     const trackName = album.tracks[currentTrackIndex];
     const savedTime = keepTime ? audioPlayer.currentTime : 0;
 
-    audioPlayer.preload = 'none';
+    // Улучшаем загрузку: 'auto' вместо 'none'
+    audioPlayer.preload = 'auto';
     audioPlayer.src = album.folder + subFolder + trackName;
 
-    audioPlayer.onloadedmetadata = () => {
-    audioPlayer.currentTime = savedTime;
+    // Сбрасываем и загружаем заново
+    audioPlayer.load();
 
-    const visualDisk = document.getElementById('player-disk-visual'); // Находим диск
+    audioPlayer.oncanplay = () => { // Используем oncanplay, оно быстрее
+        audioPlayer.currentTime = savedTime;
 
+        const visualDisk = document.getElementById('player-disk-visual');
+
+        if (isPlaying) {
+            // Принудительный старт
+            audioPlayer.play().catch(e => console.log("Ошибка авто-старта:", e));
+            if (visualDisk) visualDisk.classList.add('spinning');
+        } else {
+            if (visualDisk) visualDisk.classList.remove('spinning');
+        }
+    };
+}function updateTrack(keepTime = false) {
+    if (!currentAlbumKey) return;
+
+    const album = library[currentAlbumKey];
+    const subFolder = isInstrumental ? "Instrumental/" : "Original/";
+    const trackName = album.tracks[currentTrackIndex];
+    const savedTime = keepTime ? audioPlayer.currentTime : 0;
+
+    // СТРОИМ ПУТЬ (проверь, чтобы тут не было лишних/недостающих слешей)
+    const fullPath = album.folder + subFolder + trackName;
+    console.log("Загружаю трек:", fullPath); // ОТЛАДКА: посмотри в консоль, правильный ли путь
+
+    audioPlayer.src = fullPath;
+    audioPlayer.load();
+
+    // Запускаем сразу, не дожидаясь события загрузки (браузер сам подтянет данные)
     if (isPlaying) {
-        audioPlayer.play().catch(e => console.log("Ошибка старта"));
-
-        // --- ДОБАВЛЯЕМ ЭТО ---
-        if (visualDisk) visualDisk.classList.add('spinning');
-    } else {
-        // --- И ЭТО (на случай паузы) ---
-        if (visualDisk) visualDisk.classList.remove('spinning');
+        audioPlayer.play().then(() => {
+            audioPlayer.currentTime = savedTime;
+            const visualDisk = document.getElementById('player-disk-visual');
+            if (visualDisk) visualDisk.classList.add('spinning');
+        }).catch(e => {
+            console.log("Автостарт заблокирован браузером. Нужно нажать Play руками.", e);
+            isPlaying = false;
+        });
     }
-};
 }
+
+
 
 function insertDisk(albumKey) {
     if (library[albumKey]) {

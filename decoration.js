@@ -439,66 +439,82 @@ document.addEventListener('touchstart', function(e) {
 
 
 async function saveToGallery() {
+    const screen = document.getElementById('decoration-screen');
     const cardArea = document.getElementById('selected-card-preview');
-    const mainImg = cardArea.querySelector('.main-decor-img');
-    const stickers = cardArea.querySelectorAll('.sticker-wrapper');
+    const images = cardArea.querySelectorAll('img');
 
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
+    const q = 2; // Коэффициент качества
 
-    // Размеры холста = реальные размеры картинки
-    canvas.width = mainImg.naturalWidth;
-    canvas.height = mainImg.naturalHeight;
-    const scale = canvas.width / mainImg.clientWidth;
+    canvas.width = window.innerWidth * q;
+    canvas.height = window.innerHeight * q;
 
-    const loadImage = (imgElement) => new Promise((resolve) => {
-        if (imgElement.complete) resolve(imgElement);
-        imgElement.onload = () => resolve(imgElement);
+    const loadImage = (src) => new Promise(res => {
+        const img = new Image();
+        img.crossOrigin = "anonymous"; // Важно для GitHub
+        img.onload = () => res(img);
+        img.onerror = () => res(null);
+        img.src = src;
+    });
+
+    const loadImageFromTag = (imgTag) => new Promise(res => {
+        if (imgTag.complete) res(imgTag);
+        else imgTag.onload = () => res(imgTag);
     });
 
     try {
-        // 1. Рисуем основную карту
-        const base = await loadImage(mainImg);
-        ctx.drawImage(base, 0, 0, canvas.width, canvas.height);
+        // 1. РИСУЕМ ФОН СТОЛА
+        const style = window.getComputedStyle(screen);
+        const bgImgUrl = style.backgroundImage.slice(4, -1).replace(/"/g, "");
 
-        // 2. Рисуем стикеры
-        for (let wrapper of stickers) {
-            const sImgTag = wrapper.querySelector('img');
-            const sImg = await loadImage(sImgTag);
+        if (bgImgUrl && bgImgUrl !== "none") {
+            const bgImg = await loadImage(bgImgUrl);
+            if (bgImg) {
+                ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+            }
+        } else {
+            // Если картинка вдруг не подгрузилась — заливаем цветом
+            ctx.fillStyle = style.backgroundColor || "#222";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
 
-            const rect = wrapper.getBoundingClientRect();
-            const parentRect = cardArea.getBoundingClientRect();
+        // 2. РИСУЕМ КАРТУ И СТИКЕРЫ
+        for (let imgTag of images) {
+            const img = await loadImageFromTag(imgTag);
+            const r = imgTag.getBoundingClientRect();
 
-            // Координаты центра стикера относительно карты
-            const w = rect.width * scale;
-            const h = rect.height * scale;
-            const x = (rect.left - parentRect.left) * scale + (w / 2);
-            const y = (rect.top - parentRect.top) * scale + (h / 2);
+            const w = r.width * q;
+            const h = r.height * q;
+            const x = r.left * q + (w / 2);
+            const y = r.top * q + (h / 2);
 
-            // Угол поворота
-            const style = window.getComputedStyle(wrapper);
-            const matrix = style.transform;
+            const wrapper = imgTag.closest('.sticker-wrapper');
             let angle = 0;
-            if (matrix !== 'none') {
-                const values = matrix.split('(')[1].split(')')[0].split(',');
-                angle = Math.atan2(parseFloat(values[1]), parseFloat(values[0]));
+            if (wrapper) {
+                const wStyle = window.getComputedStyle(wrapper);
+                const matrix = wStyle.transform;
+                if (matrix !== 'none') {
+                    const values = matrix.split('(')[1].split(')')[0].split(',');
+                    angle = Math.atan2(parseFloat(values[1]), parseFloat(values[0]));
+                }
             }
 
             ctx.save();
             ctx.translate(x, y);
             ctx.rotate(angle);
-            ctx.drawImage(sImg, -w / 2, -h / 2, w, h);
+            ctx.drawImage(img, -w / 2, -h / 2, w, h);
             ctx.restore();
         }
 
-        // 3. Скачиваем
+        // 3. СКАЧИВАНИЕ
         const link = document.createElement('a');
-        link.download = `my_card_${Date.now()}.png`;
+        link.download = `my_decoration_${Date.now()}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
 
-    } catch (err) {
-        console.error("Ошибка:", err);
-        alert("На локальном ПК авто-сохранение блокируется. На GitHub будет работать!");
+    } catch (e) {
+        console.error("Ошибка сохранения:", e);
+        alert("Не удалось сохранить. Проверь консоль.");
     }
 }

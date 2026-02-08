@@ -68,7 +68,7 @@
 </div>
                 </div>
         <div class="nav-column">
-            <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
+          <div class="profile-btn" onclick="resetAllProgress()">🔄</div>
             <div class="square-btn" onclick="showScreen('shop')">Shop</div>
             <div class="square-btn" onclick="showScreen('dogs-room')">Dogs</div>
             <!--<div class="square-btn" onclick="showScreen('social-feed')">Network</div> -->
@@ -80,7 +80,7 @@
 <section id="cardbinder-screen" class="screen hidden">
   <!-- Навигация вне книги, как в других экранах -->
   <div class="nav-column">
-      <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
+      <div class="profile-btn" onclick="resetAllProgress()">🔄</div>
       <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
   </div>
   <button id="inventory-btn" class="inventory-btn">Inventory (0)</button>
@@ -142,7 +142,7 @@
 <section id="shop" class="screen">
 
     <div class="nav-column">
-        <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
+        <div class="profile-btn" onclick="resetAllProgress()">🔄</div>
         <div class="square-btn" onclick="showScreen('work-zone')">ДОМ</div>
     </div>
     <!-- Три полочки с горизонтальной прокруткой -->
@@ -153,7 +153,7 @@
 
     <section id="dogs-room" class="screen">
         <div class="nav-column">
-            <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
+            <div class="profile-btn" onclick="resetAllProgress()">🔄</div>
             <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
         </div>
         <button class = "dogs-roomb" onclick="showScreen('dogsroom1')"> room </button>
@@ -162,11 +162,11 @@
     <section id="dogsroom1" class = "screen">
 
       <div class="nav-column">
-          <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
+        <div class="profile-btn" onclick="resetAllProgress()">🔄</div>
           <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
       </div>
         <div class="nav-column">
-            <div class="profile-btn" onclick="showScreen('profile-screen')">👤</div>
+            <div class="profile-btn" onclick="resetAllProgress()">🔄</div>
             <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
         </div>
         <div class="dog-container">
@@ -196,7 +196,7 @@
             </div>
           </div>
             </section>
-    <section id="profile-screen" class="screen">
+<!--    <section id="profile-screen" class="screen">
         <div class="centered-content">
             <div class="profile-card">
                 <h2>Profile</h2>
@@ -209,7 +209,7 @@
         <div class="nav-column">
             <div class="square-btn" onclick="showScreen('work-zone')">Back</div>
         </div>
-    </section>
+    </section> -->
     <section id="binder-view" class="hidden">
     <div class="binder-overlay">
       <button id="inventory-btn">inventory</button>

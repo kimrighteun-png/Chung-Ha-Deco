@@ -30,6 +30,14 @@ function showScreen(screenId) {
 
 
 
+function resetAllProgress() {
+    if (confirm("ВНИМАНИЕ: Это полностью удалит все карточки, обнулит биндер и монеты. Ты уверена?")) {
+        localStorage.clear();
+        window.location.reload();
+    }
+}
+
+
 
 // === ПРОСТОЙ LAZY LOAD ДЛЯ ТВОЕЙ БИБЛИОТЕКИ ===
 
