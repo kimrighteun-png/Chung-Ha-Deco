@@ -67,7 +67,7 @@ let isPlaying = false;
 // ИНИЦИАЛИЗАЦИЯ ПЛЕЕРА
 const audioPlayer = new Audio();
 audioPlayer.volume = 0.5;
-audioPlayer.preload = 'metadata';
+audioPlayer.preload = 'none';
 
 // АВТОМАТИКА: Когда песня заканчивается, сама вызывается следующая
 audioPlayer.onended = () => {
