@@ -26,11 +26,33 @@ function startCatchLogic() {
     // ДВИЖЕНИЕ
     const handleMove = (e) => {
         if (!catchGameActive) return;
+
+        const dog = document.getElementById('catcher-dog');
+        const layer = document.getElementById('game-play-layer');
+        if (!dog || !layer) return;
+
+        // 1. Получаем координаты клика/тача
         let x = e.touches ? e.touches[0].clientX : e.clientX;
-        let left = x - dog.offsetWidth / 2;
-        left = Math.max(0, Math.min(window.innerWidth - dog.offsetWidth, left));
+
+        // 2. УЗНАЕМ, ГДЕ НАХОДИТСЯ САМО ИГРОВОЕ ПОЛЕ
+        const rect = layer.getBoundingClientRect();
+
+        // 3. Считаем X ОТНОСИТЕЛЬНО ПОЛЯ (а не экрана)
+        let relativeX = x - rect.left;
+
+        // 4. Расчет позиции собаки
+        let halfDog = dog.offsetWidth / 2;
+        let left = relativeX - halfDog;
+
+        // 5. ГРАНИЦЫ (теперь они будут железными)
+        let maxLeft = rect.width - dog.offsetWidth;
+
+        if (left < 0) left = 0;
+        if (left > maxLeft) left = maxLeft;
+
         dog.style.left = left + "px";
     };
+
 
     window.addEventListener('mousemove', handleMove);
     window.addEventListener('touchmove', handleMove, { passive: false });
@@ -40,40 +62,51 @@ function startCatchLogic() {
 }
 
 function spawnBone() {
-  if (!catchGameActive) return;
-  const layer = document.getElementById('game-play-layer');
+    if (!catchGameActive) return;
+    const layer = document.getElementById('game-play-layer');
+    if (!layer) return;
 
-  // Создаем не div, а img
-  const bone = document.createElement('img');
+    const bone = document.createElement('img');
+    bone.src = "dogs/item.webp";
+    bone.className = "falling-bone";
 
-  // УКАЖИ ПУТЬ К СВОЕЙ КАРТИНКЕ ЗДЕСЬ
-  bone.src = "dogs/item.webp";
+    // Начальная позиция
+    bone.style.left = Math.random() * (window.innerWidth - 60) + "px";
+    bone.style.top = "-60px";
 
-  bone.className = "falling-bone";
-  bone.style.left = Math.random() * (window.innerWidth - 60) + "px"; // Чуть больше запас под ширину картинки
-  bone.style.top = "-60px";
+    layer.appendChild(bone);
 
-  layer.appendChild(bone);
-
-    let pos = -50;
+    let pos = -60;
     const fall = setInterval(() => {
-        if (!catchGameActive) { clearInterval(fall); bone.remove(); return; }
+        if (!catchGameActive) {
+            clearInterval(fall);
+            bone.remove();
+            return;
+        }
 
         pos += 6; // Скорость падения
         bone.style.top = pos + "px";
 
         const dog = document.getElementById('catcher-dog');
-        const bRect = bone.getBoundingClientRect();
-        const dRect = dog.getBoundingClientRect();
+        if (dog) {
+            const bRect = bone.getBoundingClientRect();
+            const dRect = dog.getBoundingClientRect();
 
-        // СТОЛКНОВЕНИЕ
-        if (!(bRect.top > dRect.bottom || bRect.bottom < dRect.top || bRect.right < dRect.left || bRect.left > dRect.right)) {
-            bone.remove();
-            clearInterval(fall);
-            console.log("Поймала!"); // Тут будет начисление валюты
+            // ПРОВЕРКА СТОЛКНОВЕНИЯ
+            if (!(bRect.top > dRect.bottom || bRect.bottom < dRect.top || bRect.right < dRect.left || bRect.left > dRect.right)) {
+                bone.remove();
+                clearInterval(fall);
+
+                // --- ТВОЯ ЭКОНОМИКА ТУТ ---
+                if (typeof window.addHearts === 'function') {
+                    window.addHearts(1); // Начисляем 10 сердечек за кость
+                } else {
+                    console.error("Функция addHearts не найдена!");
+                }
+            }
         }
 
-        // ПРОМАХ
+        // ПРОМАХ (Кость улетела вниз)
         if (pos > window.innerHeight) {
             bone.remove();
             clearInterval(fall);
