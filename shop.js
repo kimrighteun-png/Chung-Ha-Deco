@@ -59,7 +59,7 @@ const price = cardData ? cardData.price : 0;
 // 2. Проверяем, хватает ли денег
 let currentBalance = parseInt(localStorage.getItem('dog_hearts')) || 0;
 if (currentBalance < price) {
-  alert("Недостаточно ❤️!");
+  alert("Not enough ❤️!");
   return;
 }
 
