@@ -11,7 +11,8 @@ const binderAlbums = [
     "algorithm",
     "ChristmasPromise",
     "Alivio",
-    "ChristmasPromiseAgain"
+    "ChristmasPromiseAgain",
+    "SaveMe"
     // ... и так далее до 13
 ];
 
@@ -73,7 +74,7 @@ function renderDisks() {
         </div>
         <img src="visual/cdbinder/cdbinderpl2.webp" class="layer-top">
     </div>
-    <button id="use-disk-btn" class="use-btn fixed-button">Использовать диск</button>
+    <button id="use-disk-btn" class="use-btn fixed-button">Play</button>
 `;
 
     document.getElementById('use-disk-btn').onclick = () => {

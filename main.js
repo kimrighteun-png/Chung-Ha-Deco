@@ -31,7 +31,7 @@ function showScreen(screenId) {
 
 
 function resetAllProgress() {
-    if (confirm("ВНИМАНИЕ: Это полностью удалит все карточки, обнулит биндер и монеты. Ты уверена?")) {
+    if (confirm("Are you sure you want to reset your progress?")) {
         localStorage.clear();
         window.location.reload();
     }

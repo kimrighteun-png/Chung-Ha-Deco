@@ -144,7 +144,14 @@ const library = {
                     tracks: [
                       "killingme.ogg"
                     ]
-                    }
+                  },
+                  "SaveMe": {
+                   title: "SaveMe",
+                   folder: "Music/SaveMe/",
+                   tracks: [
+                     "saveme.ogg"
+                   ]
+                   }
                 }
 
 let currentAlbumKey = null;
