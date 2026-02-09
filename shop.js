@@ -49,8 +49,24 @@ function initShopShelves() {
 }
 
 function buyCard(cardId, buttonEl) {
-    const inventory = window.playerInventory || [];
-    if (inventory.includes(cardId)) return;
+  const inventory = window.playerInventory || [];
+if (inventory.includes(cardId)) return;
+
+// 1. Ищем карту в базе, чтобы узнать цену
+const cardData = (window.allCards || []).find(c => String(c.id) === String(cardId));
+const price = cardData ? cardData.price : 0;
+
+// 2. Проверяем, хватает ли денег
+let currentBalance = parseInt(localStorage.getItem('dog_hearts')) || 0;
+if (currentBalance < price) {
+  alert("Недостаточно ❤️!");
+  return;
+}
+
+// 3. СПИСЫВАЕМ (добавляем минус к балансу)
+if (typeof window.addHearts === 'function') {
+  window.addHearts(-price);
+}
 
     // Добавляем карту в массив
     inventory.push(cardId);
