@@ -39,6 +39,17 @@
     <link rel="stylesheet" href="dogs.css">
     <link rel="stylesheet" href="binder.css">
     <link rel="stylesheet" href="decoration.css">
+
+    <link rel="manifest" href="manifest.json">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js');
+    });
+  }
+</script>
+
 </head>
 
 
